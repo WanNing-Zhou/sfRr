@@ -4,7 +4,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
 import eslintPlugin from 'vite-plugin-eslint';
 import { resolve } from 'path'; // npm install @types/node -D 下载这个东西防止报错
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'; // svg导入插件
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import * as path from 'node:path'; // svg导入插件
 
 // https://vitejs.dev/config/
 export default defineConfig({

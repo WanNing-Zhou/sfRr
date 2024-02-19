@@ -3,7 +3,8 @@ import type { RouteMeta, NavigationGuard } from 'vue-router';
 
 export type Component<T = any> = ReturnType<typeof defineComponent> | (() => Promise<typeof import('*.vue')>) | (() => Promise<T>);
 
-export interface AppRouteRecordRaw { // 路由类型
+export interface AppRouteRecordRaw {
+	// 路由类型
 	path: string;
 	name?: string | symbol;
 	meta?: RouteMeta;

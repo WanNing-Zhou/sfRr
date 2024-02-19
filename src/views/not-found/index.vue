@@ -1,13 +1,7 @@
 <template>
-  <div>
-    404 not found
-  </div>
+	<div>404 not found</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>
