@@ -4,6 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
 import eslintPlugin from 'vite-plugin-eslint';
 import { resolve } from 'path'; // npm install @types/node -D 下载这个东西防止报错
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'; // svg导入插件
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +18,11 @@ export default defineConfig({
 		// 代码校验
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
+		}),
+		//启用插件
+		createSvgIconsPlugin({
+			// 指定图标文件夹，绝对路径（NODE代码）
+			iconDirs: [path.resolve(process.cwd(), "src/assets/svgs")],
 		}),
 	],
 

@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!--  背景图片组件  -->
 		<back-img></back-img>
 	</div>
 </template>
