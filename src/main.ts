@@ -3,10 +3,12 @@ import './style.css';
 import App from './App.vue';
 // import { router } from '@/router';
 import store from '@/store';
+import { appConfig } from '@/utils/appConfig';
 
 const app = createApp(App);
 // 使用vue-router
 // app.use(router);
 // 使用pinia
 app.use(store);
+appConfig(app)
 app.mount('#app');

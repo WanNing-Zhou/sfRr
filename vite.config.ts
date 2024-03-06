@@ -5,7 +5,7 @@ import svgLoader from 'vite-svg-loader';
 import eslintPlugin from 'vite-plugin-eslint';
 import { resolve } from 'path'; // npm install @types/node -D 下载这个东西防止报错
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import * as path from 'node:path'; // svg导入插件
+// import * as path from 'node:path'; // svg导入插件
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,7 +23,7 @@ export default defineConfig({
 		//启用插件
 		createSvgIconsPlugin({
 			// 指定图标文件夹，绝对路径（NODE代码）
-			iconDirs: [path.resolve(process.cwd(), "src/assets/svgs")],
+			iconDirs: [resolve(process.cwd(), "src/assets/svgs")],
 		}),
 	],
 
@@ -53,5 +53,12 @@ export default defineConfig({
 	},
 	define: {
 		'process.env': {}, // 定义应用程序可以访问的全局常量
+	},
+	server: {
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		},
+		port: 5173,
+		proxy: {},
 	},
 });
