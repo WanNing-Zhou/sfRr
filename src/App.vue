@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TestIndex2 from '@/views/test/TestIndex2.vue';
+import TestDemo1 from '@/views/test/DrawerTest/TestDemo1.vue';
 </script>
 
 <template>
@@ -13,8 +13,9 @@ import TestIndex2 from '@/views/test/TestIndex2.vue';
 	<!--  </div>-->
 	<!--  <base-desktop></base-desktop>-->
 	<!--  <HelloWorld msg="Vite + Vue" />-->
-	<test-index2></test-index2>
+	<!--	<test-index></test-index>-->
 	<!--	<HomePage />-->
+	<test-demo1 />
 </template>
 
 <style scoped>

@@ -37,8 +37,7 @@ const dropContentRef = ref<InstanceType<typeof DropContent>>();
 			<div class="mb16" style="width: 100%; height: 100%">
 				<DropContent v-model="data" ref="dropContentRef" group-name="drag-demo" :row="6" :column="6" :gap="6">
 					<template #preview-item="{ data }">
-						{{ data }}
-						<div style="height: 100%; background: #f9f1c7; border-radius: 6px"></div>
+						<div style="height: 100%; background: #f9f1c7; border-radius: 6px">{{ data }}</div>
 					</template>
 					<template #move-mask="{ isPutDown }">
 						<div
@@ -71,6 +70,7 @@ const dropContentRef = ref<InstanceType<typeof DropContent>>();
 		</div>
 	</div>
 </template>
+
 <style scoped lang="scss">
 .drag-container {
 	height: 100vh;

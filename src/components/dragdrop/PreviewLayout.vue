@@ -46,6 +46,7 @@ const getPreviewStyle = ({ x, y, row, column }: DragItemData) => {
 	<div ref="previewLayoutRef" class="preview-layout">
 		<div class="preview-layout__container">
 			<div v-for="(item, i) in data" class="preview-layout__item" :key="`${item.key}${i}`" :style="getPreviewStyle(item)">
+				<h1>kak</h1>
 				<component style="width: 100%; height: 100%" :is="item.key" :data="item" />
 			</div>
 		</div>
@@ -69,6 +70,9 @@ const getPreviewStyle = ({ x, y, row, column }: DragItemData) => {
 	&__item {
 		border-radius: v-bind('borderRadius');
 		overflow: hidden;
+	}
+	.preview-layout__item {
+		background: #646cff;
 	}
 }
 </style>
