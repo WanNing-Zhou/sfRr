@@ -5,7 +5,7 @@ import PreviewItem from './PreviewItem.vue';
 import MoveMask from './MoveMask.vue';
 import { DragItemData } from '@/type/dragdrop';
 
-type CallbackFun = (e: DragItemData, list: DragItemData[]) => Promise<boolean> | boolean;
+type CallbackFun = (e: DragItemData | any, list: DragItemData[]) => Promise<boolean> | boolean;
 
 const emits = defineEmits(['update:modelValue']);
 const props = withDefaults(
@@ -74,16 +74,16 @@ const isDelRow = computed(() => {
 });
 
 // 计算 x 坐标
-const getX = (num) => parseInt(num / (boxSize.value.width + props.gap));
+const getX = (num: any) => parseInt(num / (boxSize.value.width + props.gap));
 // 计算 y 坐标
-const getY = (num) => parseInt(num / (boxSize.value.height + props.gap));
+const getY = (num: any) => parseInt(num / (boxSize.value.height + props.gap));
 // 计算列数
-const getColumn = (num) => ceil(num / (boxSize.value.width + props.gap));
+const getColumn = (num: any) => ceil(num / (boxSize.value.width + props.gap));
 // 计算行数
-const getRow = (num) => ceil(num / (boxSize.value.height + props.gap));
+const getRow = (num: any) => ceil(num / (boxSize.value.height + props.gap));
 
 // 进入放置目标
-const onDragenter = (e) => {
+const onDragenter = (e: any) => {
 	e.preventDefault();
 	const dragData = dragStore.get(props.groupName);
 	if (dragData) {
@@ -97,7 +97,7 @@ const onDragenter = (e) => {
 };
 
 // 在目标中移动
-const onDragover = (e) => {
+const onDragover = (e: any) => {
 	e.preventDefault();
 	const dragData = dragStore.get(props.groupName);
 	if (dragData) {
@@ -107,14 +107,14 @@ const onDragover = (e) => {
 };
 
 // 离开目标
-const onDragleave = (e) => {
+const onDragleave = (e: any) => {
 	e.preventDefault();
 	current.show = false;
 	current.id = undefined;
 };
 
 // 放置在目标上
-const onDrop = async (e) => {
+const onDrop = async (e: any) => {
 	e.preventDefault();
 	current.show = false;
 	const dragData = dragStore.get(props.groupName); // JSON.parse(e.dataTransfer.getData('application/json'))
@@ -257,7 +257,7 @@ defineExpose({
 		grid-template-columns: repeat(v-bind('columnCount'), v-bind("boxSize.width+'px'"));
 		grid-template-rows: repeat(v-bind('rowCount'), v-bind("boxSize.height+'px'"));
 		.bg-column {
-			background-color: #fff;
+			background-color: rgba(255, 255, 255, 0.2);
 			border-radius: 6px;
 			pointer-events: none;
 		}
