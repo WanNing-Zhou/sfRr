@@ -9,9 +9,9 @@
 const props = defineProps({
 	groundGlassStyle: {
 		type: Object,
-		default: {
-			height: '200px',
-		},
+		default: () => ({
+      height: '200px',
+    }),
 	},
 });
 </script>
