@@ -1,18 +1,29 @@
 <!--毛玻璃组件-->
 <template>
-	<div :style="groundGlassStyle" class="wq-ground-glass">
+	<div :style="glassStyle" class="wq-ground-glass">
 		<slot></slot>
 	</div>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-	groundGlassStyle: {
-		type: Object,
-		default: () => ({
-      height: '200px',
-    }),
+import { computed } from 'vue';
+
+type Props = {
+	blurSize?: number;
+};
+const props = withDefaults(defineProps<Props>(), {
+	blurSize(props) {
+		return 20;
 	},
+});
+const filterBlur = computed(() => {
+	return `blur(${props.blurSize}px)`;
+});
+
+const glassStyle = computed(() => {
+	return {
+		backdropFilter: filterBlur.value,
+	};
 });
 </script>
 
@@ -34,6 +45,5 @@ const props = defineProps({
 	/*设置背景样式*/
 	background: rgba(255, 255, 255, 0.1);
 	/*让透过card的底部元素模糊化,达到毛玻璃效果*/
-	backdrop-filter: blur(5px);
 }
 </style>

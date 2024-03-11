@@ -1,4 +1,4 @@
-type Tool = {
+export type Tool = {
     // 配置名称
     name: string,
     // 图标

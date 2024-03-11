@@ -10,10 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 
-// 主体可见性
-const visible = ref(false);
+type Props = {
+	visible: boolean; // 抽屉可见性
+};
+const props = withDefaults(defineProps<Props>(), {
+	visible(props) {
+		return false;
+	},
+});
+
 </script>
 
 <style lang="scss" scoped>
