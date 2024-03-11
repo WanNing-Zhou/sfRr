@@ -24,6 +24,9 @@ export default defineConfig({
 		createSvgIconsPlugin({
 			// 指定图标文件夹，绝对路径（NODE代码）
 			iconDirs: [resolve(process.cwd(), 'src/assets/svgs')],
+			symbolId: 'icon-[name]', // symbol的id
+			inject: 'body-last', // 插入位置
+			customDomId: "__svg__icons__dom__"// svg的id
 		}),
 	],
 

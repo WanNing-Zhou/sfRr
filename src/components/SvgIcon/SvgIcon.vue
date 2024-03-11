@@ -1,41 +1,65 @@
 <template>
-	<svg :class="className" class="svg-icon" :style="iconStyle" aria-hidden="true">
-		<use :xlink:href="iconName"></use>
+	<div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" />
+	<svg v-else :class="svgClass" aria-hidden="true">
+		<use :xlink:href="iconName" />
 	</svg>
 </template>
 
-<script setup lang="ts">
+<script setup name="SvgIcon">
 import { computed } from 'vue';
 
 const props = defineProps({
-	// 类名
+	// svg图片名称
+	iconClass: {
+		type: String,
+		required: true,
+	},
+	//class样式名称,如果svg标签需要添加class样式,那么就需要该属性来添加svg的样式
 	className: {
 		type: String,
 		default: '',
 	},
-	iconStyle: {
-		type: Object,
-		default: () => ({}),
-	},
-	name: {
-		//应用的图标名称
-		type: String,
-		default: '',
-	},
 });
 
+//是否外部链接
+const isExternal = computed(() => {
+	return /^(https?:|mailto:|tel:)/.test(props.iconClass);
+});
+
+//svg图片名称计算属性
 const iconName = computed(() => {
-	return `#icon-${props.name}`;
+	return `#icon-${props.iconClass}`;
+});
+
+//svg样式名称计算属性
+const svgClass = computed(() => {
+	if (props.className) {
+		return 'svg-icon ' + props.className;
+	} else {
+		return 'svg-icon';
+	}
+});
+
+const styleExternalIcon = computed(() => {
+	return {
+		mask: `url(${props.iconClass}) no-repeat 50% 50%`,
+		'-webkit-mask': `url(${props.iconClass}) no-repeat 50% 50%`,
+	};
 });
 </script>
 
-<style lang="scss" scoped>
-svg {
+<style scoped>
+.svg-icon {
 	width: 1em;
 	height: 1em;
 	vertical-align: -0.15em;
 	fill: currentColor;
-	//fill:black;
 	overflow: hidden;
+}
+
+.svg-external-icon {
+	background-color: currentColor;
+	mask-size: cover !important;
+	display: inline-block;
 }
 </style>

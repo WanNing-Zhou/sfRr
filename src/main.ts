@@ -4,6 +4,7 @@ import App from './App.vue';
 // import { router } from '@/router';
 import store from '@/store';
 import { appConfig } from '@/utils/appConfig';
+import 'virtual:svg-icons-register';
 
 const app = createApp(App);
 // 使用vue-router
