@@ -1,8 +1,19 @@
 <!--用于实现侧边栏抽屉-->
 <template>
-	<div class="wq_drawer_comp">
+	<div :style="drawerStyle" class="wq_drawer_comp">
 		<transition name="wq_drawer">
-			<div v-show="visible" class="wq_drawer">
+			<div v-show="visible" class="wq_drawer wq-page-shadow">
+				<div
+					:style="{
+						height: title ? '50px' : '20px',
+					}"
+					class="drawer_top"
+				>
+					<div v-if="title" class="title">{{ title }}</div>
+					<div class="close-icon" @click="closeHandle">
+						<svg-icon icon-class="close" />
+					</div>
+				</div>
 				<slot name="content"></slot>
 			</div>
 		</transition>
@@ -10,16 +21,32 @@
 </template>
 
 <script setup lang="ts">
+import { StyleValue } from 'vue';
+import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 
 type Props = {
 	visible: boolean; // 抽屉可见性
+	drawerStyle?: StyleValue;
+	title?: string;
 };
 const props = withDefaults(defineProps<Props>(), {
 	visible(props) {
 		return false;
 	},
+	drawerStyle(props) {
+		return {
+			zIndex: 10,
+		};
+	},
+	title(props) {
+		return '';
+	},
 });
 
+const emits = defineEmits(['close']);
+const closeHandle = () => {
+	emits('close');
+};
 </script>
 
 <style lang="scss" scoped>
@@ -37,11 +64,36 @@ const props = withDefaults(defineProps<Props>(), {
 		//position: fixed;
 		//top: 0;
 		//left: 0;
-		width: 300px;
+		min-width: 300px;
 		height: 100vh;
 		//background-color: #ffffff;
-		transition: transform 0.3s ease-in-out;
-		background-color: #1a1a1a;
+		transition: transform 0.3s;
+		background-color: #ffffff;
+		padding: 10px;
+		border-radius: 4px;
+
+		.drawer_top {
+			//display: flex;
+			position: relative;
+			color: #1a1a1a;
+
+			.title {
+				//display: inline-block;
+				position: absolute;
+				top: 10px;
+				left: 50%;
+				font-size: 20px;
+				transform: translateX(-50%);
+			}
+
+			.close-icon {
+				position: absolute;
+				top: 0;
+				right: 0px;
+				font-size: 20px;
+				cursor: pointer;
+			}
+		}
 	}
 	.wq_drawer-enter-active,
 	.wq_drawer-leave-active {

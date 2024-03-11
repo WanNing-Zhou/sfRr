@@ -23,6 +23,7 @@ const filterBlur = computed(() => {
 const glassStyle = computed(() => {
 	return {
 		backdropFilter: filterBlur.value,
+		zIndex: props.zIndex,
 	};
 });
 </script>
@@ -45,5 +46,7 @@ const glassStyle = computed(() => {
 	/*设置背景样式*/
 	background: rgba(255, 255, 255, 0.1);
 	/*让透过card的底部元素模糊化,达到毛玻璃效果*/
+
+	//z-index: 10;
 }
 </style>

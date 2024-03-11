@@ -20,5 +20,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SideDrawer: typeof import('./src/components/Drawer/SideDrawer.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
+    WqTab: typeof import('./src/components/WqTab/WqTab.vue')['default']
   }
 }

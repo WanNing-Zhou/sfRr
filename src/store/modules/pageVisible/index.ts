@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import wqHas from '@/utils/wqHas';
+import wqFind from '@/utils/wqFind';
 
 // 用于控制页面上组建显示
 const pageVisibleStore = defineStore('visible', {
@@ -8,6 +8,7 @@ const pageVisibleStore = defineStore('visible', {
 			SideDrawer: {
 				page: 'config',
 				visible: false,
+				name: '',
 			},
 		};
 	},
@@ -23,8 +24,18 @@ const pageVisibleStore = defineStore('visible', {
 		 * @param utilId
 		 */
 		openSideDrawer(utilId: string) {
-			this.SideDrawer.page = wqHas.haseUtilId(utilId) ? utilId : '';
-			this.SideDrawer.visible = true;
+			// this.SideDrawer.page = wqHas.haseUtilId(utilId) ? utilId : '';
+			const tool = wqFind.tools.findToolById(utilId);
+			// console.log('当前tool', utilId)
+			if(tool){
+				this.SideDrawer.visible = true;
+				// console.log(tool)
+				this.SideDrawer.page = tool.id;
+				this.SideDrawer.name = tool.name;
+			}
+
 		},
 	},
 });
+
+export default pageVisibleStore;
