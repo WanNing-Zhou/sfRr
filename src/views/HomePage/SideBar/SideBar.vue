@@ -2,7 +2,7 @@
 <template>
 	<!--  这里是一个抽屉-->
 	<side-drawer :visible="sideDrawerInfo.visible" :title="sideDrawerInfo.name" @close="drawerClose">
-		<store-page></store-page>
+		<store-page v-if="sideDrawerInfo.page === 'store'"></store-page>
 	</side-drawer>
 </template>
 

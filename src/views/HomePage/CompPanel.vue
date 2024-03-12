@@ -30,7 +30,26 @@
 import DropContent from '@/components/dragdrop/DropContent.vue';
 import { ref } from 'vue';
 
-const data = ref([]);
+const data = ref([
+	{
+		id: 1111,
+		key: 'demo-component',
+		title: '组件标题',
+		column: 1,
+		row: 1,
+		x: 1,
+		y: 1,
+	},
+	{
+		id: 2222,
+		key: 'demo-component',
+		title: '组件标题',
+		column: 1,
+		row: 1,
+		x: 2,
+		y: 3,
+	},
+]);
 </script>
 
 <style lang="scss" scoped>
