@@ -10,6 +10,7 @@ declare module 'vue' {
     BaseDesktop: typeof import('./src/components/BaseDesktop/BaseDesktop.vue')['default']
     DragItem: typeof import('./src/components/dragdrop/DragItem.vue')['default']
     DropContent: typeof import('./src/components/dragdrop/DropContent.vue')['default']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     GroundGlass: typeof import('./src/components/GroundGlass/GroundGlass.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
@@ -21,5 +22,8 @@ declare module 'vue' {
     SideDrawer: typeof import('./src/components/Drawer/SideDrawer.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
     WqTab: typeof import('./src/components/WqTab/WqTab.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

@@ -2,7 +2,7 @@
 <template>
 	<div :style="drawerStyle" class="wq_drawer_comp">
 		<transition name="wq_drawer">
-			<div v-show="visible" class="wq_drawer wq-page-shadow">
+			<div v-if="visible" class="wq_drawer wq-page-shadow">
 				<div
 					:style="{
 						height: title ? '50px' : '20px',
@@ -14,7 +14,11 @@
 						<svg-icon icon-class="close" />
 					</div>
 				</div>
-				<slot name="content"></slot>
+				<div class="drawer_content">
+					<el-scrollbar>
+						<slot></slot>
+					</el-scrollbar>
+				</div>
 			</div>
 		</transition>
 	</div>
@@ -108,6 +112,11 @@ const closeHandle = () => {
 		//transition: transform 2s ease-in-out;
 		transform: translateX(-100%);
 	}
+
+	.drawer_content {
+		height: calc(100% - 50px);
+	}
+
 	/**开关样式**/
 	.wq_drawer_switch {
 		cursor: pointer;
