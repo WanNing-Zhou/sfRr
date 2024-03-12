@@ -14,7 +14,7 @@ const props = withDefaults(
 );
 
 // eslint-disable-next-line no-undef
-const onDragstart = (e: Event) => dragStore.set(props.groupName, <DragItemData>{ x: 0, y: 0, ...props.data.defaultDrop });
+const onDragstart = (e: Event) => dragStore.set(props.groupName, { x: 0, y: 0, ...props.data });
 const onDragend = () => dragStore.remove(props.groupName);
 </script>
 <template>

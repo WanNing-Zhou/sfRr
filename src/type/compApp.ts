@@ -1,6 +1,7 @@
 import { DropLayout, DropPosition } from '@/type/dropLayout';
+import { DragItem } from '@/type/dragdrop';
 
-export interface CompApp {
+export interface CompApp extends DragItem {
 	// 名称
 	title: string;
 	// 默认位置

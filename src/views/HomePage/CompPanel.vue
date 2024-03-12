@@ -2,7 +2,9 @@
 	<div class="comp-panel">
 		<DropContent v-model="data" ref="dropContentRef" group-name="drag-demo" :row="6" :column="12" :gap="6">
 			<template #preview-item="{ data }">
-				<div style="height: 100%; background: #f9f1c7; border-radius: 6px">{{ data }}</div>
+				<div style="height: 100%; background: #f9f1c7; pointer-events: none; border-radius: 6px">
+					<CompItem :data="data"></CompItem>
+				</div>
 			</template>
 			<template #move-mask="{ isPutDown }">
 				<div
@@ -29,10 +31,12 @@
 <script setup lang="ts">
 import DropContent from '@/components/dragdrop/DropContent.vue';
 import { ref } from 'vue';
+import { CompApp } from '@/type/compApp';
+import CompItem from '@/views/HomePage/components/CompItem.vue';
 
-const data = ref([
+const data = ref<CompApp[]>([
 	{
-		id: 1111,
+		id: 'kkk1111',
 		key: 'demo-component',
 		title: '组件标题',
 		column: 1,
@@ -41,7 +45,7 @@ const data = ref([
 		y: 1,
 	},
 	{
-		id: 2222,
+		id: 'kkk2222',
 		key: 'demo-component',
 		title: '组件标题',
 		column: 1,
