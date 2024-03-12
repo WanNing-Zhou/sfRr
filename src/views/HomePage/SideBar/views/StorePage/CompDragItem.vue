@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { dragStore } from '@/components/dragdrop/drag';
-import { DragItem } from '@/type/dragdrop';
+import { CompApp } from '@/type/compApp';
 
 const props = withDefaults(
 	defineProps<{
-		data: DragItem;
+		data: CompApp;
 		/** 拖拽分组标识 */
 		groupName?: string;
 	}>(),
@@ -13,12 +13,21 @@ const props = withDefaults(
 	}
 );
 
-const onDragstart = (e: Event) => dragStore.set(props.groupName, { ...props.data });
+// eslint-disable-next-line no-undef
+const onDragstart = (e: Event) => dragStore.set(props.groupName, <DragItemData>{ x: 0, y: 0, ...props.data.defaultDrop });
 const onDragend = () => dragStore.remove(props.groupName);
 </script>
 <template>
 	<div class="drag-item">
-		<div class="drag-item__el" draggable="true" @dragstart="onDragstart" @dragend="onDragend">
+		<div
+			:style="{
+				background: `url(${data.previewUrl})`,
+			}"
+			class="drag-item__el"
+			draggable="true"
+			@dragstart="onDragstart"
+			@dragend="onDragend"
+		>
 			<slot></slot>
 		</div>
 		<div class="drag-item__title">
@@ -28,14 +37,15 @@ const onDragend = () => dragStore.remove(props.groupName);
 </template>
 <style lang="scss" scoped>
 .drag-item {
-	width: 100px;
-	height: 88px;
+	width: 220px;
+	height: 160px;
 	display: flex;
 	flex-direction: column;
 
 	&__el {
-		width: 100px;
-		height: 60px;
+		background-size: cover;
+		width: 100%;
+		height: 120px;
 		border-radius: 4px;
 		border: 1px solid #dddddd;
 	}

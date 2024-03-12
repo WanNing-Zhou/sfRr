@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DragItem from '@/components/dragdrop/DragItem.vue';
 import { CompApp } from '@/type/compApp';
 import { demoTestList } from '@/views/HomePage/SideBar/views/StorePage/testData';
+import CompDragItem from '@/views/HomePage/SideBar/views/StorePage/CompDragItem.vue';
 
 withDefaults(
 	defineProps<{
@@ -34,8 +34,12 @@ const onDragItemClick = (event: any, it: any) => {
 			<!--					<DragItem :data="it" :group-name="groupName" @click="onDragItemClick($event, it)" />-->
 			<!--				</div>-->
 
-			<div v-for="it in list" :key="it.key" class="drag-group-item">
+			<!--			<div v-for="it in list" :key="it.key" class="drag-group-item">
 				<DragItem :data="it.defaultDrop" :group-name="groupName" @click="onDragItemClick($event, it)" />
+			</div>-->
+
+			<div v-for="it in list" :key="it.key" class="drag-group-item">
+				<CompDragItem :data="it" :group-name="groupName" @click="onDragItemClick($event, it)" />
 			</div>
 		</div>
 		<!--		</div>-->
@@ -70,6 +74,7 @@ const onDragItemClick = (event: any, it: any) => {
 
 	.drag-group__content {
 		display: flex;
+		justify-content: space-around;
 		flex-wrap: wrap;
 		gap: 16px 20px;
 	}
