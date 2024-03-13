@@ -4,6 +4,7 @@ import { booleanIntersects, booleanWithin, ceil, dragStore, useBoxGrid, useBoxSi
 import PreviewItem from './PreviewItem.vue';
 import MoveMask from './MoveMask.vue';
 import { DragItemData } from '@/type/dragdrop';
+import { getUUName } from '@/utils/nanoid';
 
 type CallbackFun = (e: DragItemData | any, list: DragItemData[]) => Promise<boolean> | boolean;
 
@@ -139,7 +140,8 @@ const onDrop = async (e: any) => {
 				...dragData,
 				x: current.x,
 				y: current.y,
-				id: new Date().getTime(),
+				// id: new Date().getTime(),
+				id: getUUName(6),
 			});
 		}
 	}

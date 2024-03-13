@@ -123,7 +123,7 @@ const closeHandle = () => {
 		display: inline-block;
 		width: 50px;
 		height: 50px;
-		background: #f9f1c7;
+		//background: #f9f1c7;
 	}
 }
 </style>

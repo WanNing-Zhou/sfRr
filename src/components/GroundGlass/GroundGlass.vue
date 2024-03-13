@@ -10,6 +10,7 @@ import { computed } from 'vue';
 
 type Props = {
 	blurSize?: number;
+	glassStyle: any;
 };
 const props = withDefaults(defineProps<Props>(), {
 	blurSize(props) {
@@ -22,8 +23,9 @@ const filterBlur = computed(() => {
 
 const glassStyle = computed(() => {
 	return {
+		...props.glassStyle,
 		backdropFilter: filterBlur.value,
-		zIndex: props.zIndex,
+		// zIndex: props.zIndex,
 	};
 });
 </script>

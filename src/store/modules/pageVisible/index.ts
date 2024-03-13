@@ -10,6 +10,10 @@ const pageVisibleStore = defineStore('visible', {
 				visible: false,
 				name: '',
 			},
+			PreviewPanel: {
+				// 面板可见性
+				visible: false,
+			},
 		};
 	},
 	actions: {
@@ -27,13 +31,15 @@ const pageVisibleStore = defineStore('visible', {
 			// this.SideDrawer.page = wqHas.haseUtilId(utilId) ? utilId : '';
 			const tool = wqFind.tools.findToolById(utilId);
 			// console.log('当前tool', utilId)
-			if(tool){
+			if (tool) {
 				this.SideDrawer.visible = true;
 				// console.log(tool)
 				this.SideDrawer.page = tool.id;
 				this.SideDrawer.name = tool.name;
 			}
-
+		},
+		setPrePanelVisible(visible: boolean) {
+			this.PreviewPanel.visible = visible;
 		},
 	},
 });

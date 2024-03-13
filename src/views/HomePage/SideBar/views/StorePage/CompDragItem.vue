@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { dragStore } from '@/components/dragdrop/drag';
 import { CompApp } from '@/type/compApp';
+import useStore from '@/store/useStore';
 
 const props = withDefaults(
 	defineProps<{
@@ -13,8 +14,12 @@ const props = withDefaults(
 	}
 );
 
+const store = useStore();
 // eslint-disable-next-line no-undef
-const onDragstart = (e: Event) => dragStore.set(props.groupName, { x: 0, y: 0, ...props.data });
+const onDragstart = (e: Event) => {
+	store.pageVisible.setPrePanelVisible(true);
+	dragStore.set(props.groupName, { x: 0, y: 0, ...props.data });
+};
 const onDragend = () => dragStore.remove(props.groupName);
 </script>
 <template>

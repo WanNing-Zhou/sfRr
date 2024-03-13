@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HomePage from '@/views/HomePage/HomePage.vue';
-import TestIndex from '@/views/test/TestIndex.vue';
 </script>
 
 <template>
@@ -14,7 +13,7 @@ import TestIndex from '@/views/test/TestIndex.vue';
 	<!--  </div>-->
 	<!--  <base-desktop></base-desktop>-->
 	<!--  <HelloWorld msg="Vite + Vue" />-->
-	<test-index></test-index>
+	<!--	<test-index></test-index>-->
 	<HomePage />
 	<!--	<test-demo1 />-->
 </template>
