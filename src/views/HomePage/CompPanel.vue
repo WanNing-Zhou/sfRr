@@ -1,6 +1,6 @@
 <template>
 	<div class="comp-panel">
-		<DropContent v-if="prePanelInfo.visible" v-model="data" ref="dropContentRef" group-name="drag-demo" :row="12" :column="24" :gap="6">
+		<DropContent v-if="prePanelInfo.visible" ref="dropContentRef" v-model="data" group-name="drag-demo" :row="12" :column="24" :gap="6">
 			<template #preview-item="{ data }">
 				<div style="height: 100%; background: #646cff; border-radius: 6px">
 					<CompItem pre-view :data="data"></CompItem>
@@ -31,8 +31,8 @@
 		<div class="comp-panel__bottom">
 			<ground-glass :glass-style="{ padding: 0, overflow: 'hidden' }" :blur-size="20">
 				<div class="tools">
-					<div class="tools_btn">确认</div>
-					<div class="tools_btn">重置</div>
+					<div class="tools_btn" @click="submitPanelData">确认</div>
+					<div class="tools_btn" @click="resetPanelData">重置</div>
 				</div>
 			</ground-glass>
 		</div>
@@ -41,8 +41,7 @@
 
 <script setup lang="ts">
 import DropContent from '@/components/dragdrop/DropContent.vue';
-import { ref } from 'vue';
-import { CompApp } from '@/type/compApp';
+import { computed, ref } from 'vue';
 import CompItem from '@/views/HomePage/components/CompItem.vue';
 import CompPreviewLayout from '@/views/HomePage/components/CompPreviewLayout.vue';
 import useStore from '@/store/useStore';
@@ -51,8 +50,9 @@ import GroundGlass from '@/components/GroundGlass/GroundGlass.vue';
 
 const store = useStore();
 const { PreviewPanel: prePanelInfo } = storeToRefs(store.pageVisible);
+const { compData } = useStore();
 
-const data = ref<CompApp[]>([
+const data = ref<any[]>([
 	{
 		id: 'kkk1111',
 		key: 'demo-component',
@@ -72,7 +72,18 @@ const data = ref<CompApp[]>([
 		y: 3,
 	},
 ]);
-const submitPanelData = () => {};
+
+const localData = computed(() => {
+	return compData.CompPanel.data;
+});
+const submitPanelData = () => {
+	compData.setCompPanelData(data.value);
+};
+const resetPanelData = () => {
+	console.log('值', data);
+	console.log(data.value);
+	data.value = [...localData.value];
+};
 </script>
 
 <style lang="scss" scoped>
