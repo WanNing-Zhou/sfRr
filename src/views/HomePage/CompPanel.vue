@@ -26,7 +26,7 @@
 			</template>
 		</DropContent>
 		<div v-show="!prePanelInfo.visible" style="width: 100%; height: 100%">
-			<comp-preview-layout :data="data" :row="12" :column="24" :gap="6" :skipEmpty="false" />
+			<comp-preview-layout :data="localData" :row="12" :column="24" :gap="6" :skipEmpty="false" />
 		</div>
 		<div v-if="prePanelInfo.visible" class="comp-panel__bottom">
 			<ground-glass :glass-style="{ padding: 0, overflow: 'hidden' }" :blur-size="20">
@@ -81,12 +81,9 @@ const submitPanelData = () => {
 	// console.log(compData.setCompPanelData);
 	compData.setCompPanelData(deepCloneByJson(data.value));
 	pageVisible.setPrePanelVisible(false);
-	console.log('hh', localData.value);
 };
 const resetPanelData = () => {
-	console.log('hh', localData.value);
 	data.value = [...localData.value];
-	console.log('mm', data.value);
 };
 </script>
 
