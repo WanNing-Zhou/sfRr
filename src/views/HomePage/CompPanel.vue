@@ -28,7 +28,7 @@
 		<div v-show="!prePanelInfo.visible" style="width: 100%; height: 100%">
 			<comp-preview-layout :data="data" :row="12" :column="24" :gap="6" :skipEmpty="false" />
 		</div>
-		<div class="comp-panel__bottom">
+		<div v-if="prePanelInfo.visible" class="comp-panel__bottom">
 			<ground-glass :glass-style="{ padding: 0, overflow: 'hidden' }" :blur-size="20">
 				<div class="tools">
 					<div class="tools_btn" @click="submitPanelData">确认</div>
@@ -47,10 +47,11 @@ import CompPreviewLayout from '@/views/HomePage/components/CompPreviewLayout.vue
 import useStore from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 import GroundGlass from '@/components/GroundGlass/GroundGlass.vue';
+import { deepCloneByJson } from '@/utils/deepClone';
 
 const store = useStore();
 const { PreviewPanel: prePanelInfo } = storeToRefs(store.pageVisible);
-const { compData } = useStore();
+const { compData, pageVisible } = useStore();
 
 const data = ref<any[]>([
 	{
@@ -77,12 +78,15 @@ const localData = computed(() => {
 	return compData.CompPanel.data;
 });
 const submitPanelData = () => {
-	compData.setCompPanelData(data.value);
+	// console.log(compData.setCompPanelData);
+	compData.setCompPanelData(deepCloneByJson(data.value));
+	pageVisible.setPrePanelVisible(false);
+	console.log('hh', localData.value);
 };
 const resetPanelData = () => {
-	console.log('值', data);
-	console.log(data.value);
+	console.log('hh', localData.value);
 	data.value = [...localData.value];
+	console.log('mm', data.value);
 };
 </script>
 

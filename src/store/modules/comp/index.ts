@@ -3,7 +3,7 @@ import { CompApp } from '@/type/compApp';
 
 // 用于保存组件信息
 //:TODO 需要进行持久化存储
-const pageVisibleStore = defineStore('visible', {
+const useCompStore = defineStore('compData+', {
 	state() {
 		return {
 			Background: {
@@ -22,6 +22,7 @@ const pageVisibleStore = defineStore('visible', {
 	},
 	actions: {
 		setCompPanelData( dataArr: CompApp[]) {
+			console.log('arr', dataArr)
 			this.CompPanel.data = dataArr
 		}
 	},
@@ -29,4 +30,4 @@ const pageVisibleStore = defineStore('visible', {
 	persist: true,
 });
 
-export default pageVisibleStore;
+export default useCompStore;
