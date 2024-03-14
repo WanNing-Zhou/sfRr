@@ -6,7 +6,7 @@
           让这里根据配置文件进行渲染
         -->
 				<template v-for="toolItem in tools" :key="toolItem.id">
-					<tool-item :tool="toolItem" @click="toolClickHandle(toolItem.id)"></tool-item>
+					<tool-item :tool="toolItem" @click="toolClickHandle(toolItem)"></tool-item>
 				</template>
 			</div>
 		</ground-glass>
@@ -18,11 +18,20 @@ import GroundGlass from '@/components/GroundGlass/GroundGlass.vue';
 import tools from '@/views/HomePage/UtilsTools/toolsConfig';
 import ToolItem from '@/views/HomePage/UtilsTools/ToolItem.vue';
 import useStore from '@/store/useStore';
+import { Tool } from '@/type/tools';
 
 const store = useStore();
-const toolClickHandle = (utilId: string) => {
+const toolClickHandle = (tool: Tool) => {
+	if (tool.callback) {
+		tool.callback();
+	}
 	// console.log('被点击了');
-	store.pageVisible.openSideDrawer(utilId);
+	if (!tool.isPage) {
+		return;
+	} else {
+		// 打开页面
+		store.pageVisible.openSideDrawer(tool.id);
+	}
 };
 </script>
 

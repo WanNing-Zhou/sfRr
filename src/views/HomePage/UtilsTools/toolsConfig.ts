@@ -1,4 +1,5 @@
 import { Tool } from '@/type/tools';
+import useStore from '@/store/useStore';
 
 const tools: Tool[] = [
 	{
@@ -11,7 +12,16 @@ const tools: Tool[] = [
 		id: 'config',
 		icon: 'config',
 	},
+	{
+		name: '编辑',
+		id: 'edit',
+		icon: 'utils_edit',
+		isPage: false,
+		callback() {
+			const { pageVisible } = useStore();
+			pageVisible.setPrePanelVisible(true);
+		},
+	},
 ];
 
-
-export default tools
+export default tools;
