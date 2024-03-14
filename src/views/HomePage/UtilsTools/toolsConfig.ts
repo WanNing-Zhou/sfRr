@@ -6,11 +6,13 @@ const tools: Tool[] = [
 		name: '商店',
 		id: 'store',
 		icon: 'utils_shop',
+		isPage: true,
 	},
 	{
 		name: '设置',
 		id: 'config',
 		icon: 'config',
+		isPage: true,
 	},
 	{
 		name: '编辑',

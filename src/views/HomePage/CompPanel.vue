@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import DropContent from '@/components/dragdrop/DropContent.vue';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import CompItem from '@/views/HomePage/components/CompItem.vue';
 import CompPreviewLayout from '@/views/HomePage/components/CompPreviewLayout.vue';
 import useStore from '@/store/useStore';
@@ -53,29 +53,14 @@ const store = useStore();
 const { PreviewPanel: prePanelInfo } = storeToRefs(store.pageVisible);
 const { compData, pageVisible } = useStore();
 
-const data = ref<any[]>([
-	{
-		id: 'kkk1111',
-		key: 'demo-component',
-		title: '组件标题',
-		column: 1,
-		row: 1,
-		x: 1,
-		y: 1,
-	},
-	{
-		id: 'kkk2222',
-		key: 'demo-component',
-		title: '组件标题',
-		column: 1,
-		row: 1,
-		x: 2,
-		y: 3,
-	},
-]);
+const data = ref<any[]>([]);
 
 const localData = computed(() => {
 	return compData.CompPanel.data;
+});
+
+onMounted(() => {
+	data.value = deepCloneByJson(localData.value);
 });
 const submitPanelData = () => {
 	// console.log(compData.setCompPanelData);
