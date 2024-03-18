@@ -10,7 +10,9 @@ import store from '@/store';
 export const appConfig = (app: App<Element>) => {
 	app.component('SvgIcon', SvgIcon); // 全局注册SvgIcon
 	app.use(store)
-	microApp.start(); // 初始化micro-app
+	microApp.start({
+		'disable-memory-router': true, // 全局关闭虚拟路由系统，默认值false
+	}); // 初始化micro-app
 	// app.use(WujieVue);
 
 	// const { setupApp, preloadApp, bus } = WujieVue;

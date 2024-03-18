@@ -57,17 +57,17 @@ export const demoTestList: CompApp[] = [
 		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 	{
-		column: 1,
-		row: 1,
+		column: 3,
+		row: 3,
 		key: 'demo-component',
-		title: 'haha',
+		title: 'test1',
 		defaultDrop: {
 			column: 1,
 			row: 1,
 			key: 'demo-component',
-			title: 'haha',
+			title: 'test1',
 		},
-		url: 'http://127.0.0.1:8000/',
+		url: 'http://127.0.0.1:8000/test/test1.html',
 		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 ];
