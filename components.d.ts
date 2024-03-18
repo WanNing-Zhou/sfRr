@@ -10,8 +10,10 @@ declare module 'vue' {
     BaseDesktop: typeof import('./src/components/BaseDesktop/BaseDesktop.vue')['default']
     DragItem: typeof import('./src/components/dragdrop/DragItem.vue')['default']
     DropContent: typeof import('./src/components/dragdrop/DropContent.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
@@ -27,6 +29,7 @@ declare module 'vue' {
     SideDrawer: typeof import('./src/components/Drawer/SideDrawer.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
     WqTab: typeof import('./src/components/WqTab/WqTab.vue')['default']
+    WqUpload: typeof import('./src/components/uploadComp/wqUpload.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

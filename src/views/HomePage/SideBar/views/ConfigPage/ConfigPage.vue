@@ -51,7 +51,7 @@ const asideClickHandle = () => {
 };
 const activeKey = ref(configMenu[0].key);
 const menuSelect = (index: string) => {
-	console.log(index);
+	// console.log(index);
 	activeKey.value = index;
 };
 </script>
