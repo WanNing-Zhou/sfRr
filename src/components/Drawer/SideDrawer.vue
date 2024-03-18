@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<div class="drawer_content">
-					<el-scrollbar>
+					<el-scrollbar height="100%">
 						<slot></slot>
 					</el-scrollbar>
 				</div>
@@ -124,6 +124,9 @@ const closeHandle = () => {
 		width: 50px;
 		height: 50px;
 		//background: #f9f1c7;
+	}
+	:deep(.el-scrollbar__view) {
+		height: 100%;
 	}
 }
 </style>
