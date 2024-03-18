@@ -7,7 +7,7 @@ const useConfigStore = defineStore('appConfig', {
 		return {
 			Background: {
 				// TODO: 视频类型, 后期可能会加上视频背景
-				typeL: '',
+				type: '',
 				// 视频地址
 				url: '',
 			},

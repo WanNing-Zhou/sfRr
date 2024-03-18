@@ -26,10 +26,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .wq-title {
-	//background: #1a1a1a;
 	text-align: center;
 	width: 100%;
-	//display: flex;
 	align-items: center;
 	font-size: v-bind(fontSize);
 	line-height: v-bind(lineHeight);

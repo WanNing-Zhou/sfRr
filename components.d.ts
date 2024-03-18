@@ -29,6 +29,7 @@ declare module 'vue' {
     SideDrawer: typeof import('./src/components/Drawer/SideDrawer.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
     WqTab: typeof import('./src/components/WqTab/WqTab.vue')['default']
+    WqTitle: typeof import('./src/components/WqTitle/WqTitle.vue')['default']
     WqUpload: typeof import('./src/components/uploadComp/wqUpload.vue')['default']
   }
   export interface ComponentCustomProperties {

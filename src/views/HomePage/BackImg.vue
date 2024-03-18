@@ -8,13 +8,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
+import useStore from '@/store/useStore';
 
 const defaultBg =
 	'https://img-baofun.zhhainiao.com/pcwallpaper_ugc/static/58ce5dd7510efce116a7b8bcd2b8a9da.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_1920%2ch_1080';
 
 // :TODO get url in useStore
-const bgUrl = ref(defaultBg);
+const { appConfig } = useStore();
+const bgUrl = computed(() => {
+	return appConfig.Background.url || defaultBg;
+});
 </script>
 
 <style scoped>

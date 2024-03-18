@@ -1,10 +1,12 @@
 <template>
 	<div>
 		<div class="en-form-box">
-			<wq-upload v-model="url" width="400" height="250" class="icon-upload" />
+			<wq-title>背景设置</wq-title>
+			<wq-upload v-model="bgInfo.url" width="460" height="250" class="icon-upload" />
+			<br />
 			<div class="en-form">
 				<div>
-					<el-input v-model="url" placeholder="图片地址"></el-input>
+					<el-input v-model="bgInfo.url" placeholder="图片地址"></el-input>
 				</div>
 			</div>
 		</div>
@@ -17,23 +19,45 @@
 
 <script setup lang="ts">
 import WqUpload from '@/components/uploadComp/wqUpload.vue';
-import { ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
+import WqTitle from '@/components/WqTitle/WqTitle.vue';
+import useStore from '@/store/useStore';
 
-const enEmpty = {
-	name: '',
-	imgUrl: '',
-	searchUrl: '',
-};
+const { appConfig } = useStore();
+const bgInfo = ref({
+	type: '',
+	url: '',
+});
 
-const enForm = ref({
-	...enEmpty,
+/*const diff = computed(() => {
+	console.log('监听到数据了');
+	for (let key in bgInfo.value) {
+		if (bgInfo.value[key] !== appConfig.Background[key]) {
+			return true;
+		}
+	}
+	return false;
+});*/
+
+const diff = ref(false);
+watchEffect(() => {
+	const orgInfo = JSON.stringify(appConfig.Background);
+	const curInfo = JSON.stringify(bgInfo.value);
+	if (orgInfo !== curInfo) {
+		diff.value = true;
+	} else {
+		diff.value = false;
+	}
+});
+
+onMounted(() => {
+	bgInfo.value = appConfig.Background;
 });
 
 const submit = () => {
-	console.log(enForm.value);
+	// console.log(enF);
+	appConfig.setBackgroundData(bgInfo.value);
 };
-
-const url = ref('');
 </script>
 
 <style scoped></style>
