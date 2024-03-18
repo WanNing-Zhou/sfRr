@@ -5,7 +5,7 @@ import api from './api';
 export function fileUpload(formData: any) {
 	return request({
 		url: api.fileUploadUrl,
-		method: 'POST',
+		method: 'post',
 		transformRequest: [
 			function (data) {
 				// 去除post请求默认的Content-Type

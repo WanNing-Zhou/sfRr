@@ -14,4 +14,5 @@ export default {
 	oneWord: 'https://v1.hitokoto.cn',
 	// 文件上上传接口
 	fileUploadUrl: 'http://127.0.0.1:8000/file',
+	// fileUploadUrl: 'http://192.168.2.226:8000/file',
 };

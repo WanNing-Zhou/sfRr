@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<Prop>(), {
 			const res = await fileUpload(formData);
 			// 获取返回信息
 			const url = res.data.data.url;
+			console.log('url', url);
 			return url;
 		} else {
 			return '';
