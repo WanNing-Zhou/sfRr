@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia';
-import { login as userLogin, logout as userLogout, getUserInfo, LoginData } from '@/api/user';
-import { setToken, clearToken } from '@/utils/auth';
+import { confirmPassword, getUserInfo, login as userLogin, LoginData, logout as userLogout, setUserInfo } from '@/api/user';
+import { clearToken, setToken } from '@/utils/auth';
 import { UserState } from './types';
+import { MessageError, MessageSuccess, MessageWarning } from '@/utils/message';
+import { ResetPasswordData } from '@/type/form';
 
 const useUserStore = defineStore('user', {
 	state: (): UserState => ({
@@ -10,8 +12,11 @@ const useUserStore = defineStore('user', {
 		id: undefined,
 		mail: undefined,
 		name: undefined,
-		uid: undefined,
-		role: '',
+		introduction: undefined,
+		mobile: undefined,
+		email: undefined,
+		// uid: undefined,
+		// role: '',
 	}),
 
 	getters: {
@@ -21,12 +26,6 @@ const useUserStore = defineStore('user', {
 	},
 
 	actions: {
-		switchRoles() {
-			return new Promise((resolve) => {
-				this.role = this.role === 'user' ? 'admin' : 'user';
-				resolve(this.role);
-			});
-		},
 		// Set user's information
 		setInfo(partial: Partial<UserState>) {
 			this.$patch(partial);
@@ -39,16 +38,20 @@ const useUserStore = defineStore('user', {
 
 		// Get user's information
 		async info() {
-			const res = await getUserInfo();
-
-			this.setInfo(res.message);
+			try {
+				const res = await getUserInfo();
+				this.setInfo(res.data);
+			} catch (err) {
+				MessageWarning('登陆过期，请重新登录');
+			}
 		},
 
 		// Login
 		async login(loginForm: LoginData) {
 			try {
 				const res = await userLogin(loginForm);
-				setToken(res.message.token);
+				setToken(res.data.access_token);
+				await this.info();
 			} catch (err) {
 				clearToken();
 				throw err;
@@ -58,12 +61,42 @@ const useUserStore = defineStore('user', {
 			this.resetInfo();
 			clearToken();
 		},
+		async updateInfo() {
+			const infoForm: any | UserState = {
+				id: this.id,
+				name: this.name,
+				introduction: this.introduction,
+				mobile: this.mobile,
+				email: this.email,
+				avatar: this.avatar,
+			};
+			const res = await setUserInfo(infoForm);
+			this.$patch(res.data);
+		},
+
 		// Logout
 		async logout() {
 			try {
 				await userLogout();
+				this.resetInfo();
+				setToken('');
 			} finally {
 				this.logoutCallBack();
+			}
+		},
+		async resetPassword(resetPasswordForm: { oldPassword: string; newPassword: string }) {
+			const form: ResetPasswordData = {
+				newPassword: resetPasswordForm.newPassword,
+				oldPassword: resetPasswordForm.oldPassword,
+				id: this.id,
+			};
+			try {
+				await confirmPassword(form);
+				MessageSuccess({
+					content: '修改成功',
+				});
+			} catch (err) {
+				MessageError({ content: '修改失败' });
 			}
 		},
 	},

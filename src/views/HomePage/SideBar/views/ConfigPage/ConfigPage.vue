@@ -133,7 +133,7 @@ const menuSelect = (index: string) => {
 }
 
 .page-main {
-	max-height: 600px;
+	min-height: 600px;
 	overflow: auto;
 }
 </style>

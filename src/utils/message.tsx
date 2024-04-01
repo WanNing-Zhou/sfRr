@@ -18,14 +18,23 @@ export const fileOverSize = (size: number | string | null = null) => {
  * @constructor
  */
 export const MessageSuccess = (str: any) => {
-	ElMessage.success(str)
-}
+	ElMessage.success(str);
+};
 
 /**
- * 失败消息
+ * 警告消息
  * @param str
  * @constructor
  */
 export const MessageWarning = (str: any) => {
-	ElMessage.warning(str)
-}
+	ElMessage.warning(str);
+};
+
+/**
+ * 严重消息
+ * @param str
+ * @constructor
+ */
+export const MessageError = (str: any) => {
+	ElMessage.warning(str);
+};

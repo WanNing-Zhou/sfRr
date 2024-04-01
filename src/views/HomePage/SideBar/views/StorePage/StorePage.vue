@@ -59,7 +59,7 @@ const getList = async () => {
 	storeLoading.setLoading(true);
 	try {
 		const res = await getCompList(paginate);
-		const resData = res.data.data;
+		const resData = res.data;
 		const list = resData.list || [];
 		list.forEach((item: any) => {
 			item.key = item.id;
