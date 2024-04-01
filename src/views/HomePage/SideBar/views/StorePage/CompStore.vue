@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { CompApp } from '@/type/compApp';
-import { demoTestList } from '@/views/HomePage/SideBar/views/StorePage/testData';
 import CompDragItem from '@/views/HomePage/SideBar/views/StorePage/CompDragItem.vue';
 
 withDefaults(
 	defineProps<{
-		// list: DragSchema[];
+		list: any;
 		/** 拖拽分组标识 */
 		// groupName?: string;
 	}>(),
@@ -15,8 +13,6 @@ withDefaults(
 );
 // 组件列表
 const groupName = 'drag-demo';
-const list: CompApp[] = demoTestList;
-
 const onDragItemClick = (event: any, it: any) => {
 	console.log(event);
 	console.log(it);

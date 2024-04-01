@@ -15,5 +15,5 @@ export interface CompApp extends DragItem {
 	// 组件key
 	key: string;
 	// 预览图地址
-	previewUrl?: string;
+	preview_url?: string;
 };

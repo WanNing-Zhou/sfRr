@@ -26,7 +26,8 @@ const onDragend = () => dragStore.remove(props.groupName);
 	<div class="drag-item">
 		<div
 			:style="{
-				background: `url(${data.previewUrl})`,
+				background: `url(${data.preview_url})`,
+				backgroundSize: 'cover',
 			}"
 			class="drag-item__el"
 			draggable="true"

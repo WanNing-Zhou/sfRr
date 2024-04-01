@@ -11,3 +11,21 @@ export const fileOverSize = (size: number | string | null = null) => {
 		ElMessage.warning('文件大小上传限制');
 	}
 };
+
+/**
+ * 成功消息
+ * @param str
+ * @constructor
+ */
+export const MessageSuccess = (str: any) => {
+	ElMessage.success(str)
+}
+
+/**
+ * 失败消息
+ * @param str
+ * @constructor
+ */
+export const MessageWarning = (str: any) => {
+	ElMessage.warning(str)
+}

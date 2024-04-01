@@ -21,7 +21,7 @@ export default defineConfig({
 		svgLoader(),
 		// 代码校验
 		eslintPlugin({
-			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
+			include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
 		// svg引入插件
 		createSvgIconsPlugin({
@@ -62,7 +62,7 @@ export default defineConfig({
 				replacement: 'vue/dist/vue.esm-bundler.js', // compile template
 			},
 		],
-		extensions: ['.ts', '.js', '.cjs'],
+		extensions: ['.ts', '.js', '.cjs', '.tsx'],
 	},
 	define: {
 		'process.env': {}, // 定义应用程序可以访问的全局常量

@@ -73,7 +73,7 @@ export default request;
 import axios from 'axios';
 
 const instance = axios.create({
-	baseURL: 'https://api.example.com', // 设置基本的 API URL
+	baseURL: import.meta.env.VITE_BASE_URL, // 设置基本的 API URL
 	timeout: 5000, // 设置请求超时时间
 	headers: { 'Content-Type': 'application/json' } // 设置默认的请求头
 });

@@ -8,7 +8,7 @@ export const demoTestList: CompApp[] = [
 		title: '这是一个简单的计算器',
 		defaultDrop: { key: 'demo-component', title: '1x1', column: 1, row: 1 },
 		url: 'http://127.0.0.1:8000/test/test.html',
-		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
+		preview_url: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 	{
 		column: 1,
@@ -22,7 +22,7 @@ export const demoTestList: CompApp[] = [
 			title: 'haha',
 		},
 		url: 'http://127.0.0.1:8000/',
-		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
+		preview_url: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 	{
 		column: 1,
@@ -31,7 +31,7 @@ export const demoTestList: CompApp[] = [
 		title: 'haha',
 		defaultDrop: { key: 'demo-component', title: '1x1', column: 1, row: 1 },
 		url: 'http://127.0.0.1:8000/',
-		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
+		preview_url: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 	{
 		column: 1,
@@ -45,7 +45,7 @@ export const demoTestList: CompApp[] = [
 			title: 'haha',
 		},
 		url: 'http://127.0.0.1:8000/',
-		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
+		preview_url: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 	{
 		column: 1,
@@ -54,7 +54,7 @@ export const demoTestList: CompApp[] = [
 		title: 'haha',
 		defaultDrop: { key: 'demo-component', title: '1x1', column: 1, row: 1 },
 		url: 'http://127.0.0.1:8000/',
-		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
+		preview_url: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 	{
 		column: 3,
@@ -68,6 +68,6 @@ export const demoTestList: CompApp[] = [
 			title: 'test1',
 		},
 		url: 'http://127.0.0.1:8000/test/test1.html',
-		previewUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
+		preview_url: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.aI5TikqkSMfOEXA7Nns9vwHaEz?w=277&h=180&c=7&r=0&o=5&pid=1.7',
 	},
 ];
