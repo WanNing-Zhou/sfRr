@@ -1,7 +1,8 @@
 <template>
-	<el-scrollbar height="100%">
+	<el-scrollbar height="100%" class="config-main">
 		<bg-config v-if="index === 'background'"></bg-config>
 		<auth-config v-if="index === 'user'"></auth-config>
+		<page-manage v-if="index === 'page'"></page-manage>
 	</el-scrollbar>
 </template>
 
@@ -9,6 +10,7 @@
 import configMenu from '@/views/HomePage/SideBar/views/ConfigPage/pageCofnig';
 import BgConfig from '@/views/HomePage/SideBar/views/ConfigPage/views/BgConfig.vue';
 import AuthConfig from '@/views/HomePage/SideBar/views/ConfigPage/views/auth-config/AuthConfig.vue';
+import PageManage from '@/views/HomePage/SideBar/views/ConfigPage/views/page-manage/page-manage.vue';
 
 type Props = {
 	index: string;
@@ -21,4 +23,4 @@ const props = withDefaults(defineProps<Props>(), {
 });
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

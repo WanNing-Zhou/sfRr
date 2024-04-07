@@ -41,25 +41,61 @@
 
 <script setup lang="ts">
 import DropContent from '@/components/dragdrop/DropContent.vue';
-import { computed, onMounted, ref } from 'vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
 import CompItem from '@/views/HomePage/components/CompItem.vue';
 import CompPreviewLayout from '@/views/HomePage/components/CompPreviewLayout.vue';
 import useStore from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 import GroundGlass from '@/components/GroundGlass/GroundGlass.vue';
 import { deepCloneByJson } from '@/utils/deepClone';
+import { isPage } from '@/utils/url';
+import usePage from '@/hooks/usePage';
+import { useRoute } from 'vue-router';
+import { getPageInfo } from '@/api/page';
 
 const store = useStore();
+const route = useRoute();
 const { PreviewPanel: prePanelInfo } = storeToRefs(store.pageVisible);
 const { compData, pageVisible } = useStore();
 
 const data = ref<any[]>([]);
 
+// 页面标识
+const page = usePage();
+const pageData = ref([]);
+const pageID = computed(() => {
+	return route.query['page'];
+});
+
 const localData = computed(() => {
+	const pageFlag = isPage();
+	if (page.isPage) {
+		return pageData.value;
+	}
 	return compData.CompPanel.data;
 });
 
+// 预览面板数据
+const getPageData = async () => {
+	const id = page.pageID.value;
+	const res = await getPageInfo(id);
+	pageData.value = res.data;
+	// console.log(res);
+};
+
 onMounted(() => {
+	nextTick(() => {
+		console.log(window.location.href);
+		// 判断是否是页面
+		const id = isPage();
+		if (id) {
+			// const id = route.quer;
+			page.setPageID(id);
+			page.setIsPage(true);
+			getPageData();
+		}
+	});
+
 	data.value = deepCloneByJson(localData.value);
 });
 const submitPanelData = () => {
