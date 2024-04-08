@@ -10,13 +10,19 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import useStore from '@/store/useStore';
+import usePage from '@/hooks/usePage';
 
 const defaultBg =
 	'https://img-baofun.zhhainiao.com/pcwallpaper_ugc/static/58ce5dd7510efce116a7b8bcd2b8a9da.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_1920%2ch_1080';
 
 // :TODO get url in useStore
 const { appConfig } = useStore();
+const page = usePage();
 const bgUrl = computed(() => {
+	if (page.isPage.value) {
+		console.log('page.pageData.value.config.url', page.pageData.value.config.url);
+		return page.pageData.value.config.url;
+	}
 	return appConfig.Background.url || defaultBg;
 });
 </script>

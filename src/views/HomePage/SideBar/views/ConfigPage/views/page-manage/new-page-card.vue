@@ -36,10 +36,11 @@ const formRef = ref();
 
 const submitHandel = async () => {
 	try {
-		formData.value.data = {
+		// 将数据转换为json串
+		formData.value.data = JSON.stringify({
 			config: configStore.Background || {},
 			comps: compStore.CompPanel || {},
-		};
+		});
 		await createPage(formData.value);
 	} catch (err) {
 		// MessageError('创建失败');

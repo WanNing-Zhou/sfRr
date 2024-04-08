@@ -69,7 +69,8 @@ const pageID = computed(() => {
 
 const localData = computed(() => {
 	const pageFlag = isPage();
-	if (page.isPage) {
+	if (page.isPage.value) {
+		console.log('page为true', pageData.value);
 		return pageData.value;
 	}
 	return compData.CompPanel.data;
@@ -80,7 +81,11 @@ const getPageData = async () => {
 	const id = page.pageID.value;
 	const res = await getPageInfo(id);
 	pageData.value = res.data;
-	// console.log(res);
+	const d = JSON.parse(JSON.parse(res.data.data));
+	page.setPageData(d);
+	console.log(typeof d);
+	console.log(d['comps']);
+	pageData.value = d['comps'].data;
 };
 
 onMounted(() => {

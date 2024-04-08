@@ -5,7 +5,10 @@ const isPage = ref(false);
 // 页面id
 const pageID = ref('');
 // pageData
-const pageData = ref({});
+const pageData = ref({
+	comp: {},
+	config: {} as any,
+});
 
 export default function usePage() {
 	return {
