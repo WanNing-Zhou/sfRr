@@ -5,8 +5,8 @@ export type Tool = {
 	icon: string;
 	// 唯一标识
 	id: string;
-    // 是否打开抽屉
-    isPage?: boolean
-    // 回掉方法
+	// 是否打开抽屉
+	isPage?: boolean;
+	// 回掉方法
 	callback?: () => void;
 };

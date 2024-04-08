@@ -4,6 +4,7 @@
 	<side-drawer :visible="sideDrawerInfo.visible" :title="sideDrawerInfo.name" @close="drawerClose">
 		<store-page v-if="sideDrawerInfo.page === 'store'"></store-page>
 		<config-page v-if="sideDrawerInfo.page === 'config'"></config-page>
+		<config-page v-if="sideDrawerInfo.page === 'edit_comp'"></config-page>
 	</side-drawer>
 </template>
 

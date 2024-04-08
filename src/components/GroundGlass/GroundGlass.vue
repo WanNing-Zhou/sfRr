@@ -10,11 +10,14 @@ import { computed } from 'vue';
 
 type Props = {
 	blurSize?: number;
-	glassStyle: any;
+	glassStyle?: any;
 };
 const props = withDefaults(defineProps<Props>(), {
 	blurSize(props) {
 		return 20;
+	},
+	glassStyle() {
+		return {};
 	},
 });
 const filterBlur = computed(() => {

@@ -3,7 +3,7 @@
 		<DropContent v-if="prePanelInfo.visible" ref="dropContentRef" v-model="data" group-name="drag-demo" :row="12" :column="24" :gap="6">
 			<template #preview-item="{ data }">
 				<div style="height: 100%; background: #646cff; border-radius: 6px">
-					<CompItem pre-view :data="data"></CompItem>
+					<CompItem @remove="onRemovePreviewItem(data)" pre-view :data="data"></CompItem>
 				</div>
 			</template>
 			<template #move-mask="{ isPutDown }">
@@ -59,6 +59,10 @@ const { PreviewPanel: prePanelInfo } = storeToRefs(store.pageVisible);
 const { compData, pageVisible } = useStore();
 
 const data = ref<any[]>([]);
+// 删除组件
+const onRemovePreviewItem = (el: any) => {
+	data.value = data.value.filter((item) => item !== el);
+};
 
 // 页面标识
 const page = usePage();

@@ -9,6 +9,7 @@ const pageVisibleStore = defineStore('visible', {
 				page: 'config',
 				visible: false,
 				name: '',
+				data: {} as any,
 			},
 			PreviewPanel: {
 				// 面板可见性
@@ -40,6 +41,16 @@ const pageVisibleStore = defineStore('visible', {
 		},
 		setPrePanelVisible(visible: boolean) {
 			this.PreviewPanel.visible = visible;
+		},
+		/**
+		 * @description 新建抽屉
+		 * @param v
+		 */
+		newSidDrawer(v: { page: string; name: string; data: any; }) {
+			this.SideDrawer.visible = true;
+			this.SideDrawer.page = v.page;
+			this.SideDrawer.name = v.name;
+			this.SideDrawer.data = v.data;
 		},
 	},
 });

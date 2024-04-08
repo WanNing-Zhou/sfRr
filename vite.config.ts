@@ -14,7 +14,13 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 export default defineConfig({
 	plugins: [
 		// vue
-		vue(),
+		vue({
+			template: {
+				compilerOptions: {
+					isCustomElement: (tag) => /^micro-app/.test(tag),
+				},
+			},
+		}),
 		//tsx
 		vueJsx(),
 		// 用于使用svg图标
@@ -29,7 +35,7 @@ export default defineConfig({
 			iconDirs: [resolve(process.cwd(), 'src/assets/svgs')],
 			symbolId: 'icon-[name]', // symbol的id
 			inject: 'body-last', // 插入位置
-			customDomId: "__svg__icons__dom__"// svg的id
+			customDomId: '__svg__icons__dom__', // svg的id
 		}),
 		// 自动引入设置
 		AutoImport({
