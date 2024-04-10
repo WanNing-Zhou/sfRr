@@ -103,18 +103,61 @@ const childInfo = reactive({
 let num = 0;
 // 编辑组件
 const editHandle = () => {
-	num++;
+	// num++;
 	// TODO 获取子组件传递的信息
-	childInfo.data = { option: MsgOption.GET_CONFIG, data: {} };
-	ceStore.compEditHandle(localData.value);
+	childInfo.data = { option: MsgOption.FETCH_EDIT_CONFIG, data: {} };
+
+	// ceStore.compEditHandle(localData.value);
+
 	// 获取默认数据
-	pvStore.newSidDrawer({ page: 'comp_edit', name: props.data.title, data: localData.value });
+	pvStore.newSidDrawer({ page: 'edit_comp', name: props.data.title });
+};
+
+const previewEdit = (data: any) => {
+	console.log('previewEdit, 触发了');
+	// 预览触发
+	childInfo.data = { option: MsgOption.POST_EDIT_CONFIG, data: [...data] };
+	// pvStore.newSidDrawer({ page: 'edit_comp', name: props.data.title });
+};
+
+// 保存设置
+const saveEdit = (data: any) => {
+	childInfo.data = { option: MsgOption.SAVE_CONFIG, data: [...data] };
+};
+
+// 重置编辑信息
+const resetEdit = () => {
+	childInfo.data = { option: MsgOption.FETCH_EDIT_DEF_CONFIG, data: {} };
+};
+
+// 设置编辑信息
+const setEditData = (configValue: any) => {
+	// 设置编辑信息
+	console.log('setEditData触发', configValue);
+	// console.log('设置编辑信息', configValue);
+	ceStore.compEditHandle({
+		compData: { ...localData.value, config: [...(configValue || [])] },
+		saveCallBack: saveEdit,
+		resetCallBack: resetEdit,
+		previewCallBack: previewEdit,
+	});
+};
+
+// 上传编辑信息
+const subEditData = (configValue: any) => {
+	childInfo.data = { message: MsgOption.POST_EDIT_CONFIG, data: [...configValue] };
 };
 
 // 父组件接受子组件数据
 const handleDataChange = (e: any) => {
-	console.log('我踏马接受到自组件数据了');
-	console.log(e.detail.data);
+	const { option, data } = e.detail.data;
+	console.log(option, data);
+	switch (option) {
+		case MsgOption.POST_EDIT_CONFIG:
+			console.log('我踏马接受到自组件数据了, 兄弟们快看');
+			setEditData(data);
+			break;
+	}
 };
 
 /**
@@ -123,6 +166,11 @@ const handleDataChange = (e: any) => {
 const childMounted = () => {
 	// console.log('老子要尼玛发送数据');
 	childInfo.data = { name: '卡卡西' };
+	// 判断组件config属性是否存在
+	if (showData.value.config) {
+		// 如果config蜀绣能够存在,将设置信息发送给子组件
+		childInfo.data = { option: MsgOption.POST_CONFIG, data: { ...showData.value.config } };
+	}
 };
 
 const url = 'http://127.0.0.1:8000/index.html';
