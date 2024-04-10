@@ -3,7 +3,7 @@
 		<DropContent v-if="prePanelInfo.visible" ref="dropContentRef" v-model="data" group-name="drag-demo" :row="12" :column="24" :gap="6">
 			<template #preview-item="{ data }">
 				<div style="height: 100%; background: #646cff; border-radius: 6px">
-					<CompItem @remove="onRemovePreviewItem(data)" pre-view :data="data"></CompItem>
+					<CompItem pre-view :data="data" @remove="onRemovePreviewItem(data)" @update-config="onPreviewItemSaveConfig"></CompItem>
 				</div>
 			</template>
 			<template #move-mask="{ isPutDown }">
@@ -52,6 +52,7 @@ import { isPage } from '@/utils/url';
 import usePage from '@/hooks/usePage';
 import { useRoute } from 'vue-router';
 import { getPageInfo } from '@/api/page';
+import { getUUName } from '@/utils/nanoid';
 
 const store = useStore();
 const route = useRoute();
@@ -62,6 +63,16 @@ const data = ref<any[]>([]);
 // 删除组件
 const onRemovePreviewItem = (el: any) => {
 	data.value = data.value.filter((item) => item !== el);
+};
+
+const onPreviewItemSaveConfig = (id: any, config: any) => {
+	data.value.forEach((item) => {
+		if (item.id === id) {
+			item.config = config;
+			item.id = getUUName(6);
+		}
+	});
+	// el.config = config;
 };
 
 // 页面标识
