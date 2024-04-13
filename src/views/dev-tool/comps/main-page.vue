@@ -8,7 +8,6 @@
 		<div>
 			<micro-app
 				v-if="devStore.url"
-				style="width: 100%; height: 100%; overflow: hidden"
 				:data="childInfo.data"
 				name="dev-comp"
 				:url="devStore.url"
@@ -133,6 +132,7 @@ onMounted(() => {
 
 <style scoped>
 .main-page {
+	max-width: calc(100vw - 800px);
 	max-height: calc(100vh - 190px);
 }
 </style>
