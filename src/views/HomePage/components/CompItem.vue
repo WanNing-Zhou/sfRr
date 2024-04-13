@@ -31,6 +31,7 @@ import pageVisibleStore from '@/store/modules/pageVisible';
 import useCompEditStore from '@/store/modules/comp/compEdit';
 import { deepCloneByJson } from '@/utils/deepClone';
 import { MsgOption } from '@/enum/msgOption';
+import { cloneFnJSON } from '@vueuse/core';
 
 type Props = {
 	data: CompApp;
@@ -122,7 +123,7 @@ const previewEdit = (data: any) => {
 
 // 保存设置
 const saveEdit = (data: any) => {
-	console.log('saveEdit, 触发了');
+	// console.log('saveEdit, 触发了');
 	childInfo.data = { option: MsgOption.SAVE_CONFIG, data: [...data] };
 	// 没有发送数据的情况下
 	emits('update-config', props.data.id, ceStore.compData.config);
@@ -134,14 +135,14 @@ const saveEdit = (data: any) => {
 
 // 重置编辑信息
 const resetEdit = () => {
-	console.log('resetEdit, 触发了');
+	// console.log('resetEdit, 触发了');
 	childInfo.data = { option: MsgOption.FETCH_EDIT_DEF_CONFIG, data: {} };
 };
 
 // 设置编辑信息
 const setEditData = (configValue: any) => {
 	// 设置编辑信息
-	console.log('setEditData触发', configValue);
+	// console.log('setEditData触发', configValue);
 	// console.log('设置编辑信息', configValue);
 	ceStore.compEditHandle({
 		compData: { ...localData.value, config: [...(configValue || [])] },
@@ -167,17 +168,18 @@ const saveConfig = (data: any) => {
 // 父组件接受子组件数据
 const handleDataChange = (e: any) => {
 	const { option, data } = e.detail.data;
-	console.log(option, data);
+	// console.log(option, data);
+	const copyData = cloneFnJSON(data);
 	switch (option) {
 		case MsgOption.POST_EDIT_CONFIG:
-			console.log('我踏马接受到自组件数据了, 兄弟们快看');
-			setEditData(data);
+			// console.log('我踏马接受到自组件数据了, 兄弟们快看');
+			setEditData(copyData);
 			break;
 		case MsgOption.POST_EDIT_DEF_CONFIG:
-			setEditData(data);
+			setEditData(copyData);
 			break;
 		case MsgOption.POST_CONFIG:
-			saveConfig(data);
+			saveConfig(copyData);
 			break;
 	}
 };
@@ -191,7 +193,7 @@ const childMounted = () => {
 	// 判断组件config属性是否存在
 	if (showData.value.config) {
 		// 如果config蜀绣能够存在,将设置信息发送给子组件
-		console.log('发送配置信息');
+		// console.log('发送配置信息');
 		childInfo.data = { option: MsgOption.POST_CONFIG, data: [...showData.value.config] };
 	}
 };

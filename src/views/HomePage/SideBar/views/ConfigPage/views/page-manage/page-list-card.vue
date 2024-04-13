@@ -21,10 +21,19 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, toRefs, watch } from 'vue';
 import { getPageList } from '@/api/page';
 import { addQueryToUrl, getCurrentUrl } from '@/utils/url';
 
+type Props = {
+	getListFlag: boolean;
+};
+
+const props = withDefaults(defineProps<Props>(), {
+	getListFlag(props) {
+		return false;
+	},
+});
 const tableData = ref([]);
 
 const currentUrl = getCurrentUrl();
@@ -36,6 +45,13 @@ const getData = async () => {
 		console.log(err);
 	}
 };
+
+const { getListFlag } = toRefs(props);
+watch(getListFlag, () => {
+	if (getListFlag.value) {
+		getData();
+	}
+});
 
 onMounted(() => {
 	getData();

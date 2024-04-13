@@ -1,6 +1,10 @@
 <template>
-	<div class="edit-page">
+	<el-scrollbar height="100%" class="left-page">
 		<el-card>
+			<el-button @click="devStore.editHandle">编辑</el-button>
+		</el-card>
+		<el-divider></el-divider>
+		<el-card v-if="isEdit">
 			<el-form>
 				<template v-for="(item, index) in configData" :key="index">
 					<el-form-item :label="item.label">
@@ -18,37 +22,41 @@
 			<el-form-item>
 				<!--				<el-button type="primary" @click="previewHandle">预览</el-button>-->
 				<el-button type="primary" @click="saveHandle">保存</el-button>
-				<el-button>重置</el-button>
+				<el-button @click="resetHandle">重置</el-button>
 			</el-form-item>
 		</el-card>
-	</div>
+	</el-scrollbar>
 </template>
 
 <script setup lang="ts">
-import useCompEditStore from '@/store/modules/comp/compEdit';
 import { computed, watch } from 'vue';
 import { CompConfigMsg } from '@/type/cmpConfigMsg';
+import useDevToolStore from '@/views/dev-tool/devToolStore';
 
-const ceStore = useCompEditStore();
+const devStore = useDevToolStore();
+
+const isEdit = computed(() => {
+	return devStore.isEdit;
+});
 
 const configData = computed<CompConfigMsg[]>(() => {
-	console.log('kakaxi', ceStore.compData.config);
-	return ceStore.compData.config;
+	console.log('kakaxi', devStore.editConfigData);
+	return devStore.editConfigData;
 });
 
 // 保存设置
 const saveHandle = () => {
-	ceStore.saveEdit(configData.value);
+	devStore.saveHandle(configData.value);
 };
 
 // 预览设置
 const previewHandle = () => {
-	ceStore.previewEdit(configData.value);
+	devStore.previewHandle(configData.value);
 };
 
 // 重置设置
 const resetHandle = () => {
-	ceStore.resetEdit();
+	devStore.resetHandle();
 };
 
 watch(
@@ -61,8 +69,15 @@ watch(
 );
 </script>
 
-<style scoped>
-.edit-page {
-	min-width: 500px;
+<style lang="scss" scoped>
+.left-page {
+	//border: 1px solid black;
+	//box-shadow: ;
+	height: 100%;
+	//background: #535bf2;
+	min-width: 400px;
+	//box-shadow: 10px 12px 10px rgba(0, 0, 0, 0.2);
+	border-right: 1px solid #999797;
+	max-height: calc(100vh - 60px);
 }
 </style>

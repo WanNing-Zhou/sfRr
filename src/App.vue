@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import HomePage from '@/views/HomePage/HomePage.vue';
-</script>
+<script setup lang="ts"></script>
 
 <template>
 	<!--  <div>-->
@@ -14,8 +12,10 @@ import HomePage from '@/views/HomePage/HomePage.vue';
 	<!--  <base-desktop></base-desktop>-->
 	<!--  <HelloWorld msg="Vite + Vue" />-->
 	<!--	<test-index></test-index>-->
-	<HomePage />
+	<!--	<HomePage />-->
 	<!--	<test-demo1 />-->
+
+	<router-view></router-view>
 </template>
 
 <style scoped>

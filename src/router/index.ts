@@ -1,6 +1,6 @@
 import NProgress from 'nprogress'; //导入
 import 'nprogress/nprogress.css';
-import { createRouter, createWebHashHistory } from 'vue-router'; // 页面头部进度条
+import { createRouter, createWebHistory } from 'vue-router'; // 页面头部进度条
 import { appRoutes } from '@/router/routes';
 
 //全局进度条的配置
@@ -14,18 +14,24 @@ NProgress.configure({
 });
 
 export const router = createRouter({
-	history: createWebHashHistory(),
+	history: createWebHistory(),
 	routes: [
 		{
 			path: '/',
-			redirect: 'home', //  路由重定向
+			component: () => import('@/views/HomePage/HomePage.vue'),
 			// component: ,
-			children: [],
+			// children: [],
 		},
 		{
 			path: '/login',
 			name: 'login',
 			component: () => import('@/views/login/login.vue'), // 这里引入组件
+		},
+		{
+			// 开发者调试工具
+			path: '/dev-tool',
+			name: 'dev-tool',
+			component: () => import('@/views/dev-tool/dev-tool.vue'),
 		},
 		...appRoutes,
 		/*    REDIRECT_MAIN,

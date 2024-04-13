@@ -53,3 +53,26 @@ export function isPage(): string {
 	}
 	return '';
 }
+
+
+// 将地址格式化为 http://xxx.com
+
+export function isCompUrl(url: string){
+	if (!url.match(/^https?:\/\//) && !url.match(/http?:\/\//)) {
+		// 如果不包含，则添加 'http://'
+		// url = 'http://' + url;
+		return false
+	}
+	return true
+
+	return url.match(/^https?:\/\//) || url.match(/http?:\/\//)
+}
+
+export function formatURL(url: string) {
+	// 判断网址是否包含 'http://' 或 'https://'
+	if (!url.match(/^https?:\/\//) && !url.match(/http?:\/\//)) {
+		// 如果不包含，则添加 'http://'
+		url = 'http://' + url;
+	}
+	return url;
+}

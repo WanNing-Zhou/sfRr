@@ -23,6 +23,9 @@ import { ref } from 'vue';
 import useConfigStore from '@/store/modules/appCofig';
 import useCompStore from '@/store/modules/comp';
 import { createPage, CreatePageForm } from '@/api/page';
+import { MessageSuccess } from '@/utils/message';
+
+const emits = defineEmits(['create-ok']);
 
 const configStore = useConfigStore();
 const compStore = useCompStore();
@@ -42,6 +45,8 @@ const submitHandel = async () => {
 			comps: compStore.CompPanel || {},
 		});
 		await createPage(formData.value);
+		MessageSuccess('创建成功');
+		emits('create-ok');
 	} catch (err) {
 		// MessageError('创建失败');
 	}
