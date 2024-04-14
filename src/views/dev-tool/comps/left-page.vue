@@ -45,7 +45,7 @@ const compUrl = computed(() => {
 });
 
 const configData = computed<CompConfigMsg[]>(() => {
-	console.log('kakaxi', devStore.editConfigData);
+	// console.log('kakaxi', devStore.editConfigData);
 	return devStore.editConfigData;
 });
 

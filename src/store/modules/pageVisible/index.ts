@@ -46,7 +46,7 @@ const pageVisibleStore = defineStore('visible', {
 		 * @description 新建抽屉
 		 * @param v
 		 */
-		newSidDrawer(v: { page: string; name: string; }) {
+		newSidDrawer(v: { page: string; name: string }) {
 			this.SideDrawer.visible = true;
 			this.SideDrawer.page = v.page;
 			this.SideDrawer.name = v.name;

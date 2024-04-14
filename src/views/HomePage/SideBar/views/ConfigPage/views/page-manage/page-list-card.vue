@@ -42,7 +42,7 @@ const getData = async () => {
 		const res = await getPageList();
 		tableData.value = res.data.list;
 	} catch (err) {
-		console.log(err);
+		// console.log(err);
 	}
 };
 

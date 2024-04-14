@@ -11,5 +11,5 @@ const app = createApp(App);
 // 使用vue-router
 // app.use(router);
 // 使用pinia
-appConfig(app)
+appConfig(app);
 app.mount('#app');

@@ -13,19 +13,19 @@ export function createPage(form: any) {
 	});
 }
 
-export function getPageList(param?: any){
+export function getPageList(param?: any) {
 	return request({
 		url: 'api/page/list',
 		method: 'get',
-	})
+	});
 }
 
-export function getPageInfo(id: string){
+export function getPageInfo(id: string) {
 	return request({
 		url: 'api/page/info',
 		method: 'get',
 		params: {
-			id
-		}
-	})
+			id,
+		},
+	});
 }

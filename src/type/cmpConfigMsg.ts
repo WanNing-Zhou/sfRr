@@ -2,7 +2,7 @@ type Option = {
 	value: string | number | object | boolean;
 	label: string;
 	disabled?: boolean; // 是否禁用
-}
+};
 
 export interface CompConfigMsg {
 	type: 'text' | 'number' | 'select' | 'textarea' | 'checkbox' | 'color' | 'switch'; // 类型

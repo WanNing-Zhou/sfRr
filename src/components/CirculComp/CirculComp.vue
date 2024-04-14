@@ -22,9 +22,9 @@ const props = withDefaults(defineProps<Prop>(), {
 .circular-comp {
 	border-radius: 50%;
 	background: v-bind(bgColor);
-  text-align: center;
-  display: inline-block;
-  color: v-bind(color);
+	text-align: center;
+	display: inline-block;
+	color: v-bind(color);
 
 	&.normal {
 		font-size: 14px;

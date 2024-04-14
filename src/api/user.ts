@@ -38,7 +38,6 @@ export function getUserInfo() {
 	});
 }
 
-
 // 设置用户细心
 export function setUserInfo(form: UserState) {
 	return request.post<UserState>('/api/auth/info', form);

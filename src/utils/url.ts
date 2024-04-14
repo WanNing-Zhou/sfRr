@@ -4,16 +4,12 @@ export function getCurrentUrl() {
 	return window.location.href;
 }
 
+// 向url中添加查询参数
 export function addQueryToUrl(url: URL | string, queryParams: AnyObject | any) {
 	const query: string[] = [];
-
-	console.log(queryParams, 'queryParams');
 	for (const key in queryParams) {
 		query.push(`${key}=${queryParams[key]}`);
 	}
-
-	console.log('query', query);
-
 	const reqQuery = query.join('&');
 	return url + '?' + reqQuery;
 }
@@ -27,11 +23,10 @@ export function parseQuery(url: string): AnyObject {
 		return {};
 	}
 	const query = url.split('?')[1];
-	if(!query){
-		return {}
+	if (!query) {
+		return {};
 	}
 	const params = query.split('&');
-	console.log(params, 'params');
 	const queryObject: AnyObject = {};
 
 	params.forEach((param: string) => {
@@ -54,18 +49,17 @@ export function isPage(): string {
 	return '';
 }
 
-
 // 将地址格式化为 http://xxx.com
 
-export function isCompUrl(url: string){
+export function isCompUrl(url: string) {
 	if (!url.match(/^https?:\/\//) && !url.match(/http?:\/\//)) {
 		// 如果不包含，则添加 'http://'
 		// url = 'http://' + url;
-		return false
+		return false;
 	}
-	return true
+	return true;
 
-	return url.match(/^https?:\/\//) || url.match(/http?:\/\//)
+	return url.match(/^https?:\/\//) || url.match(/http?:\/\//);
 }
 
 export function formatURL(url: string) {

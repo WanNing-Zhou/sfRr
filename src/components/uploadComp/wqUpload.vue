@@ -24,7 +24,7 @@
 
 <script lang="tsx" setup>
 import { computed, ref } from 'vue';
-import { fileOverSize } from '@/utils/message.tsx';
+import { fileOverSize } from '@/utils/message';
 import { fileUpload } from '@/api/file';
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 
@@ -45,8 +45,8 @@ const props = withDefaults(defineProps<Prop>(), {
 			formData.append('files', file);
 			const res = await fileUpload(formData);
 			// 获取返回信息
-			const url = res.data.data.url;
-			console.log('url', url);
+			const url = res.data.url;
+			// console.log('url', url);
 			return url;
 		} else {
 			return '';
@@ -84,10 +84,7 @@ const uploadPhoto = () => {
 
 // 上传文件请求
 const uploadFileRequest = async (file: File) => {
-	// console.log('file', file)
-	// console.log('file', file)
 	const url = await props.uploadFn(file);
-	// console.log('url', url)
 	defaultPhoto.value = url || URL.createObjectURL(file);
 
 	// 可以使用TUS进行文件上传操作

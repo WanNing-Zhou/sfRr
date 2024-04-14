@@ -49,22 +49,22 @@ const confirmUrlHandle = () => {
 	}
 };
 
+// 编辑回调
 const editCallback = () => {
-	try {
-		childInfo.data = { option: MsgOption.FETCH_EDIT_CONFIG, data: {} };
-	} catch (err) {
-		console.log('editCallback err', err);
-	}
+	childInfo.data = { option: MsgOption.FETCH_EDIT_CONFIG, data: {} };
 };
 
+// 重置编辑回调
 const editResetCallback = () => {
 	childInfo.data = { option: MsgOption.FETCH_EDIT_DEF_CONFIG, data: {} };
 };
 
+// 预览回调
 const editPreviewCallback = (data: any) => {
 	childInfo.data = { option: MsgOption.POST_EDIT_CONFIG, data: [...data] };
 };
 
+// 编辑保存回调
 const editSaveCallback = (data: any) => {
 	childInfo.data = { option: MsgOption.SAVE_CONFIG, data: [...data] };
 };
@@ -118,12 +118,14 @@ const handleDataChange = (e: any) => {
 	}
 };
 
+// 子应用加载异常
 const childError = () => {
 	MessageError('组件加载错误, 请检查url是否正确');
 };
 
+// 子组件加载成功回调
 const childMounted = () => {
-	console.log('自组件mounted');
+	// console.log('自组件mounted');
 };
 
 onMounted(() => {

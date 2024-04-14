@@ -39,13 +39,13 @@ const useCompEditStore = defineStore('compEdit', {
 			this.previewCallBack(data);
 		},
 		// 保存设置
-		saveEdit(data: any){
+		saveEdit(data: any) {
 			this.saveCallBack(data);
 		},
 		// 重置设置
 		resetEdit() {
-			this.resetCallBack()
-		}
+			this.resetCallBack();
+		},
 	},
 	getters: {},
 });

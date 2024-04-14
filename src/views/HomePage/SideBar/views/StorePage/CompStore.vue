@@ -14,8 +14,8 @@ withDefaults(
 // 组件列表
 const groupName = 'drag-demo';
 const onDragItemClick = (event: any, it: any) => {
-	console.log(event);
-	console.log(it);
+	// console.log(event);
+	// console.log(it);
 };
 </script>
 

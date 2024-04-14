@@ -53,7 +53,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 				await userStore.updateInfo();
 				MessageSuccess('用户信息更新成功');
 			} catch (err) {
-				console.log(err);
+				// console.log(err);
 			}
 		} else {
 			MessageWarning('表单验证失败，请检查表单');

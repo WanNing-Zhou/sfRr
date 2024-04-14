@@ -13,6 +13,3 @@ export function getCompList(formData: GetCompListType) {
 		params: formData,
 	});
 }
-
-
-

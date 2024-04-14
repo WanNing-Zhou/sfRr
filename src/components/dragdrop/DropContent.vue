@@ -118,9 +118,9 @@ const onDragleave = (e: any) => {
 const onDrop = async (e: any) => {
 	e.preventDefault();
 	current.show = false;
-	console.log('onDrop 中 groupName', props.groupName);
+	// console.log('onDrop 中 groupName', props.groupName);
 	const dragData = dragStore.get(props.groupName); // JSON.parse(e.dataTransfer.getData('application/json'))
-	console.log(dragData);
+	// console.log(dragData);
 	if (
 		isPutDown.value &&
 		(await props.beforeDrop(

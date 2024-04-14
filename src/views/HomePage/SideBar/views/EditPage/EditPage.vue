@@ -32,7 +32,7 @@ import { CompConfigMsg } from '@/type/cmpConfigMsg';
 const ceStore = useCompEditStore();
 
 const configData = computed<CompConfigMsg[]>(() => {
-	console.log('kakaxi', ceStore.compData.config);
+	// console.log('kakaxi', ceStore.compData.config);
 	return ceStore.compData.config;
 });
 

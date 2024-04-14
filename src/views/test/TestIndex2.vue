@@ -25,10 +25,10 @@ const url = 'http://127.0.0.1:8000/index.html';
 onMounted(() => {
 	testCors()
 		.then(() => {
-			console.log('request success');
+			// console.log('request success');
 		})
 		.catch(() => {
-			console.log('request error');
+			// console.log('request error');
 		});
 });
 </script>

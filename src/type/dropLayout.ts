@@ -10,7 +10,6 @@ export interface DropLayout {
 	row: number;
 	// 标题 (目前没啥卵用)
 	title?: string;
-
 }
 
 // 位置

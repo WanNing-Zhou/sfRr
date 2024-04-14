@@ -18,7 +18,7 @@ export default function usePage() {
 		setPageID(value: string) {
 			pageID.value = value;
 		},
-		setPageData(value: any){
+		setPageData(value: any) {
 			pageData.value = value;
 		},
 		isPage, // ref对象

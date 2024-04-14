@@ -13,9 +13,10 @@ withDefaults(
 	}
 );
 
+// 当拖拽的元素被点击时触发
 const onDragItemClick = (event: any, it: any) => {
-	console.log(event);
-	console.log(it);
+	// console.log(event);
+	// console.log(it);
 };
 </script>
 

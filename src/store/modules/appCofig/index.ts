@@ -15,8 +15,8 @@ const useConfigStore = defineStore('appConfig', {
 	},
 	actions: {
 		setBackgroundData(value: any) {
-			this.Background = value
-		}
+			this.Background = value;
+		},
 	},
 	getters: {},
 	persist: true,

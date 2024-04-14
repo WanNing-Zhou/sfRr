@@ -13,16 +13,16 @@ const configMenu: ConfigMenuItem[] = [
 		key: 'background',
 		icon: 'conMenu_bg',
 	},
-  {
-    name: '账户',
-    key: 'user',
-    icon: 'conMenu_user'
-  },
+	{
+		name: '账户',
+		key: 'user',
+		icon: 'conMenu_user',
+	},
 	{
 		name: '网页管理',
 		key: 'page',
-		icon: 'conMenu_page'
-	}
+		icon: 'conMenu_page',
+	},
 ];
 
 export default configMenu;

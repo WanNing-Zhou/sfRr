@@ -3,7 +3,6 @@ export enum MsgOption {
 	F_SET_CONFIG = 'fSetConfig',
 	F_EDIT_CONFIG = 'fEditConfig',
 
-
 	// 获取当前组件唯一标识
 	FETCH_NAME = 'FetchName',
 	POST_NAME = 'PostName',
@@ -18,11 +17,9 @@ export enum MsgOption {
 	CONFIRM_EDIT_CONFIG = 'ConfirmEditConfig', // 提交编辑设置
 	SAVE_CONFIG = 'SaveEditConfig', // 保存设置
 
-
 	// 获取配置
 	FETCH_CONFIG = 'FetchConfig',
 	POST_CONFIG = 'PostConfig',
-
 
 	// ... other message types
 }

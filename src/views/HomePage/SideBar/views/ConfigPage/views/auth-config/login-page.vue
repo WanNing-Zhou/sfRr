@@ -75,8 +75,9 @@ const submitHandle = async () => {
 	}
 };
 
+// 记住密码
 const rpChangeHandle = (val: boolean) => {
-	console.log(val);
+	// console.log(val);
 	rememberPassword.value = val;
 };
 </script>

@@ -21,10 +21,10 @@ const useCompStore = defineStore('compData', {
 		};
 	},
 	actions: {
-		setCompPanelData( dataArr: CompApp[]) {
-			console.log('arr', dataArr)
-			this.CompPanel.data = dataArr
-		}
+		setCompPanelData(dataArr: CompApp[]) {
+			// console.log('arr', dataArr)
+			this.CompPanel.data = dataArr;
+		},
 	},
 	getters: {},
 	persist: true,

@@ -1,4 +1,4 @@
-import {ElMessage} from 'element-plus';
+import { ElMessage } from 'element-plus';
 
 /**
  * @description 文件过大提醒

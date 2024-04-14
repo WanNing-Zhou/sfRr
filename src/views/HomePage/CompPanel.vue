@@ -77,15 +77,16 @@ const onPreviewItemSaveConfig = (id: any, config: any) => {
 
 // 页面标识
 const page = usePage();
+// 预览面板数据
 const pageData = ref([]);
+//页面id
 const pageID = computed(() => {
 	return route.query['page'];
 });
-
+//  需要渲染的数据
 const localData = computed(() => {
 	const pageFlag = isPage();
 	if (page.isPage.value) {
-		console.log('page为true', pageData.value);
 		return pageData.value;
 	}
 	return compData.CompPanel.data;
@@ -98,14 +99,14 @@ const getPageData = async () => {
 	pageData.value = res.data;
 	const d = JSON.parse(JSON.parse(res.data.data));
 	page.setPageData(d);
-	console.log(typeof d);
-	console.log(d['comps']);
+	// console.log(typeof d);
+	// console.log(d['comps']);
 	pageData.value = d['comps'].data;
 };
 
 onMounted(() => {
 	nextTick(() => {
-		console.log(window.location.href);
+		// console.log(window.location.href);
 		// 判断是否是页面
 		const id = isPage();
 		if (id) {
