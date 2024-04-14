@@ -18,4 +18,5 @@ export interface CompApp extends DragItem {
 	preview_url?: string;
 	// 设置信息
 	config?: any;
+	info?: string;
 }

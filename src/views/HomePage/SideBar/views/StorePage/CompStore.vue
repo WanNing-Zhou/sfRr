@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import CompDragItem from '@/views/HomePage/SideBar/views/StorePage/CompDragItem.vue';
+import { CompApp } from '@/type/compApp';
 
 withDefaults(
 	defineProps<{
-		list: any;
+		list: any | CompApp[];
 		/** 拖拽分组标识 */
 		// groupName?: string;
 	}>(),
@@ -35,7 +36,12 @@ const onDragItemClick = (event: any, it: any) => {
 			</div>-->
 
 			<div v-for="it in list" :key="it.key" class="drag-group-item">
-				<CompDragItem :data="it" :group-name="groupName" @click="onDragItemClick($event, it)" />
+				<el-popover placement="right" :title="it.title" :width="200">
+					<template #default> {{ it.info }} </template>
+					<template #reference>
+						<CompDragItem :data="it" :group-name="groupName" @click="onDragItemClick($event, it)" />
+					</template>
+				</el-popover>
 			</div>
 		</div>
 		<!--		</div>-->
