@@ -46,9 +46,9 @@ const useDevToolStore = defineStore('devToolStore', {
 			this.resetCallBack = value.resetCallBack;
 		},
 		// 编辑
-		editHandle(data: any) {
+		editHandle() {
 			this.isEdit = true;
-			this.editCallBack && this.editCallBack(data);
+			this.editCallBack && this.editCallBack();
 		},
 		// preview
 		previewHandle(data: any) {

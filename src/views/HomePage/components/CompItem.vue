@@ -5,19 +5,19 @@
 		<!-- name：应用名称, url：应用地址 -->
 		<div v-if="preView" class="item-mask" @mouseenter="mouseEnterHandle" @mouseleave="mouseLeaveHandle">
 			<ground-glass v-if="maskVisible" class="item-mask-content">
-				<div class="item-mask-content-item" @click.stop="editHandle"><svg-icon icon-class="config"></svg-icon></div>
+				<div class="item-mask-content-item" @click.stop="editHandle"><svg-icon icon-class="config" /></div>
 				<div class="item-mask-content-item" @click.stop="delHandle"><svg-icon icon-class="delete" /></div>
 			</ground-glass>
 		</div>
 		<micro-app
 			:class="{ eventNone: preView }"
 			style="width: 100%; height: 100%; overflow: hidden"
-			@mounted="childMounted"
-			@datachange="handleDataChange"
 			:data="childInfo.data"
 			:name="microName"
 			:url="showData.url"
 			iframe
+			@mounted="childMounted"
+			@datachange="handleDataChange"
 		></micro-app>
 	</div>
 </template>
@@ -115,7 +115,7 @@ const editHandle = () => {
 };
 
 const previewEdit = (data: any) => {
-	console.log('previewEdit, 触发了');
+	// console.log('previewEdit, 触发了');
 	// 预览触发
 	childInfo.data = { option: MsgOption.POST_EDIT_CONFIG, data: [...data] };
 	// pvStore.newSidDrawer({ page: 'edit_comp', name: props.data.title });
@@ -218,13 +218,14 @@ const url = 'http://127.0.0.1:8000/index.html';
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		z-index: 999;
 
 		&:hover {
 			background: rgba(26, 26, 26, 0.2);
 		}
 		.item-mask-content {
-			max-width: 300px;
-			max-height: 300px;
+			//max-width: 300px;
+			//max-height: 300px;
 			font-size: 30px;
 			//background: #646cff;
 			display: flex;

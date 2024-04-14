@@ -1,10 +1,10 @@
 <template>
 	<el-scrollbar height="100%" class="left-page">
 		<el-card>
-			<el-button @click="devStore.editHandle">编辑</el-button>
+			<el-button @click="editHandle">编辑</el-button>
 		</el-card>
 		<el-divider></el-divider>
-		<el-card v-if="isEdit">
+		<el-card v-if="isEdit && compUrl">
 			<el-form>
 				<template v-for="(item, index) in configData" :key="index">
 					<el-form-item :label="item.label">
@@ -32,6 +32,7 @@
 import { computed, watch } from 'vue';
 import { CompConfigMsg } from '@/type/cmpConfigMsg';
 import useDevToolStore from '@/views/dev-tool/devToolStore';
+import { MessageError } from '@/utils/message';
 
 const devStore = useDevToolStore();
 
@@ -39,10 +40,22 @@ const isEdit = computed(() => {
 	return devStore.isEdit;
 });
 
+const compUrl = computed(() => {
+	return devStore.url;
+});
+
 const configData = computed<CompConfigMsg[]>(() => {
 	console.log('kakaxi', devStore.editConfigData);
 	return devStore.editConfigData;
 });
+
+const editHandle = () => {
+	if (compUrl.value) {
+		devStore.editHandle();
+	} else {
+		MessageError('请输入组件地址');
+	}
+};
 
 // 保存设置
 const saveHandle = () => {
@@ -73,9 +86,13 @@ watch(
 .left-page {
 	//border: 1px solid black;
 	//box-shadow: ;
+	padding: 10px;
 	height: 100%;
+	margin-left: 20px;
+	background: #ffffff;
+	border-radius: 4px;
 	//background: #535bf2;
-	min-width: 400px;
+	//min-width: 400px;
 	//box-shadow: 10px 12px 10px rgba(0, 0, 0, 0.2);
 	border-right: 1px solid #999797;
 	max-height: calc(100vh - 60px);

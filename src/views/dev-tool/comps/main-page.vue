@@ -50,7 +50,11 @@ const confirmUrlHandle = () => {
 };
 
 const editCallback = () => {
-	childInfo.data = { option: MsgOption.FETCH_EDIT_CONFIG, data: {} };
+	try {
+		childInfo.data = { option: MsgOption.FETCH_EDIT_CONFIG, data: {} };
+	} catch (err) {
+		console.log('editCallback err', err);
+	}
 };
 
 const editResetCallback = () => {
@@ -69,7 +73,8 @@ const editSaveCallback = (data: any) => {
 watch(
 	childInfo,
 	(nv) => {
-		console.log('watch');
+		// console.log('watch');
+		// const {};
 		devStore.msgPush({ option: nv.data.option as any, data: deepCloneByJson(nv.data.data), type: 0 });
 	},
 	{ deep: true }

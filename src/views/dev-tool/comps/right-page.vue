@@ -46,8 +46,12 @@ const msgList = computed(() => {
 
 <style lang="scss" scoped>
 .right-page {
+	padding: 10px;
 	border-left: 1px solid #999797;
 	max-height: calc(100vh - 60px);
+	margin-right: 20px;
+	background: #ffffff;
+	border-radius: 4px;
 	//overflow-y: auto;
 
 	.info-line {
