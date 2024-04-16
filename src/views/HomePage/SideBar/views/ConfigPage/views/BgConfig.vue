@@ -22,6 +22,7 @@ import WqUpload from '@/components/uploadComp/wqUpload.vue';
 import { onMounted, ref, watchEffect } from 'vue';
 import WqTitle from '@/components/WqTitle/WqTitle.vue';
 import useStore from '@/store/useStore';
+import { MessageSuccess } from '@/utils/message';
 
 const { appConfig } = useStore();
 const bgInfo = ref({
@@ -56,7 +57,10 @@ onMounted(() => {
 
 const submit = () => {
 	// console.log(enF);
-	appConfig.setBackgroundData(bgInfo.value);
+	if (bgInfo.value.url) {
+		appConfig.setBackgroundData(bgInfo.value);
+		MessageSuccess('背景设置成功');
+	}
 };
 </script>
 

@@ -21,5 +21,9 @@ export enum MsgOption {
 	FETCH_CONFIG = 'FetchConfig',
 	POST_CONFIG = 'PostConfig',
 
+	// 发送Message
+	POST_MESSAGE = 'PostMessage',
+
+
 	// ... other message types
 }

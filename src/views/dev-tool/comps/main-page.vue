@@ -12,6 +12,7 @@
 				name="dev-comp"
 				:url="devStore.url"
 				iframe
+				router-mode="pure"
 				@mounted="childMounted"
 				@datachange="handleDataChange"
 				@error="childError"
@@ -28,6 +29,7 @@ import { deepCloneByJson } from '@/utils/deepClone';
 import { MessageError } from '@/utils/message';
 import { cloneFnJSON } from '@vueuse/core';
 import { getCurrentUrl, isCompUrl, parseQuery } from '@/utils/url';
+import { ElMessage } from 'element-plus';
 
 const url = ref('');
 
@@ -98,6 +100,11 @@ const saveConfig = (data: any) => {
 	devStore.setConfigData(data);
 };
 
+// 消息处理
+const messageHandle = (data: any) => {
+	ElMessage(data);
+};
+
 // 父组件接受子组件数据
 const handleDataChange = (e: any) => {
 	const { option, data } = e.detail.data;
@@ -114,6 +121,9 @@ const handleDataChange = (e: any) => {
 			break;
 		case MsgOption.POST_CONFIG:
 			saveConfig(copyData);
+			break;
+		case MsgOption.POST_MESSAGE:
+			messageHandle(data);
 			break;
 	}
 };

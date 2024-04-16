@@ -1,7 +1,6 @@
 import NProgress from 'nprogress'; //导入
 import 'nprogress/nprogress.css';
 import { createRouter, createWebHistory } from 'vue-router'; // 页面头部进度条
-import { appRoutes } from '@/router/routes';
 
 //全局进度条的配置
 NProgress.configure({
@@ -18,6 +17,7 @@ export const router = createRouter({
 	routes: [
 		{
 			path: '/',
+			name: 'home',
 			component: () => import('@/views/HomePage/HomePage.vue'),
 			// component: ,
 			// children: [],
@@ -33,7 +33,7 @@ export const router = createRouter({
 			name: 'dev-tool',
 			component: () => import('@/views/dev-tool/dev-tool.vue'),
 		},
-		...appRoutes,
+		// ...appRoutes,
 		/*    REDIRECT_MAIN,
     NOT_FOUND_ROUTE,*/
 	],

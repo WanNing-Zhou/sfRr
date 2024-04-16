@@ -16,6 +16,7 @@
 			:name="microName"
 			:url="showData.url"
 			iframe
+			router-mode="pure"
 			@mounted="childMounted"
 			@datachange="handleDataChange"
 		></micro-app>
