@@ -1,11 +1,11 @@
 <template>
 	<div class="edit-page">
 		<el-card>
-			<el-form>
+			<el-form label-position="top">
 				<template v-for="(item, index) in configData" :key="index">
 					<el-form-item :label="item.label">
 						<el-input v-if="item.type === 'text'" v-model="item.value" :placeholder="item.placeholder || ''"></el-input>
-						<el-input v-if="item.type === 'textarea'" v-model="item.value" :placeholder="item.placeholder || ''"></el-input>
+						<el-input v-if="item.type === 'textarea'" type="textarea" v-model="item.value" :placeholder="item.placeholder || ''"></el-input>
 						<el-input-number v-if="item.type === 'number'" v-model="item.value" :placeholder="item.placeholder || ''"></el-input-number>
 						<el-color-picker v-if="item.type === 'color'" v-model="item.value" show-alpha />
 						<el-switch v-if="item.type === 'switch'" v-model="item.value" :placeholder="item.placeholder || ''"></el-switch>
@@ -26,8 +26,8 @@
 
 <script setup lang="ts">
 import useCompEditStore from '@/store/modules/comp/compEdit';
-import { computed, watch } from 'vue';
-import { CompConfigMsg } from '@/type/cmpConfigMsg';
+import {computed, watch} from 'vue';
+import {CompConfigMsg} from '@/type/cmpConfigMsg';
 
 const ceStore = useCompEditStore();
 

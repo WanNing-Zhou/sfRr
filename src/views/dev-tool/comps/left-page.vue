@@ -5,11 +5,11 @@
 		</el-card>
 		<el-divider></el-divider>
 		<el-card v-if="isEdit && compUrl">
-			<el-form>
+			<el-form :label-position="'top'">
 				<template v-for="(item, index) in configData" :key="index">
-					<el-form-item :label="item.label">
+					<el-form-item :label="item.label" >
 						<el-input v-if="item.type === 'text'" v-model="item.value" :placeholder="item.placeholder || ''"></el-input>
-						<el-input v-if="item.type === 'textarea'" v-model="item.value" :placeholder="item.placeholder || ''"></el-input>
+						<el-input v-if="item.type === 'textarea'" :rows="item.rows || 10" type="textarea" v-model="item.value" :placeholder="item.placeholder || ''"></el-input>
 						<el-input-number v-if="item.type === 'number'" v-model="item.value" :placeholder="item.placeholder || ''"></el-input-number>
 						<el-color-picker v-if="item.type === 'color'" v-model="item.value" show-alpha />
 						<el-switch v-if="item.type === 'switch'" v-model="item.value" :placeholder="item.placeholder || ''"></el-switch>
@@ -29,10 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue';
-import { CompConfigMsg } from '@/type/cmpConfigMsg';
+import {computed, watch} from 'vue';
+import {CompConfigMsg} from '@/type/cmpConfigMsg';
 import useDevToolStore from '@/views/dev-tool/devToolStore';
-import { MessageError } from '@/utils/message';
+import {MessageError} from '@/utils/message';
 
 const devStore = useDevToolStore();
 
