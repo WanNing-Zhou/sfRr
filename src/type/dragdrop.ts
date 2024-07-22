@@ -17,3 +17,6 @@ export interface DragSchema {
 	title: string;
 	list: DragItem[];
 }
+
+
+export type DragItemPosition =  [number, number, number,number]

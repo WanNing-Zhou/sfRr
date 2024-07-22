@@ -1,5 +1,5 @@
 import { useElementSize } from '@vueuse/core';
-import { Ref, computed, onUnmounted, ref, watch } from 'vue';
+import { computed, onUnmounted, Ref, ref, watch } from 'vue';
 
 class DragStore<T extends DragItemData> {
 	moveItem = new Map<string, DragItemData>();
@@ -89,6 +89,8 @@ export const useBoxGrid = (list: Ref<DragItemData[]>, minColumn: number, minRow:
 					x.push(item.x + item.column);
 					y.push(item.y + item.row);
 				});
+				// :TODO 这里可以优化一下
+				// 获取最大列数和最大行数
 				columnCount.value = Math.max(...x, minColumn, columnCount.value);
 				rowCount.value = Math.max(...y, minRow, rowCount.value);
 			}

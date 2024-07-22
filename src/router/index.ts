@@ -1,6 +1,6 @@
 import NProgress from 'nprogress'; //导入
 import 'nprogress/nprogress.css';
-import { createRouter, createWebHistory } from 'vue-router'; // 页面头部进度条
+import {createRouter, createWebHistory} from 'vue-router'; // 页面头部进度条
 
 //全局进度条的配置
 NProgress.configure({
@@ -22,10 +22,15 @@ export const router = createRouter({
 			// component: ,
 			// children: [],
 		},
+		// {
+		// 	path: '/login',
+		// 	name: 'login',
+		// 	component: () => import('@/views/login/login.vue'), // 这里引入组件
+		// },
 		{
-			path: '/login',
-			name: 'login',
-			component: () => import('@/views/login/login.vue'), // 这里引入组件
+			path: '/test',
+			name: 'test',
+			component: () => import('@/views/test/TestPage.vue')
 		},
 		{
 			// 开发者调试工具

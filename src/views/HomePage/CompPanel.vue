@@ -41,18 +41,18 @@
 
 <script setup lang="ts">
 import DropContent from '@/components/dragdrop/DropContent.vue';
-import { computed, nextTick, onMounted, ref } from 'vue';
+import {computed, nextTick, onMounted, ref} from 'vue';
 import CompItem from '@/views/HomePage/components/CompItem.vue';
 import CompPreviewLayout from '@/views/HomePage/components/CompPreviewLayout.vue';
 import useStore from '@/store/useStore';
-import { storeToRefs } from 'pinia';
+import {storeToRefs} from 'pinia';
 import GroundGlass from '@/components/GroundGlass/GroundGlass.vue';
-import { deepCloneByJson } from '@/utils/deepClone';
-import { isPage } from '@/utils/url';
+import {deepCloneByJson} from '@/utils/deepClone';
+import {isPage} from '@/utils/url';
 import usePage from '@/hooks/usePage';
-import { useRoute } from 'vue-router';
-import { getPageInfo } from '@/api/page';
-import { getUUName } from '@/utils/nanoid';
+import {useRoute} from 'vue-router';
+import {getPageInfo} from '@/api/page';
+import {getUUName} from '@/utils/nanoid';
 
 const store = useStore();
 const route = useRoute();
@@ -94,10 +94,12 @@ const localData = computed(() => {
 
 // 预览面板数据
 const getPageData = async () => {
-	const id = page.pageID.value;
+  const id = page.pageID.value;
 	const res = await getPageInfo(id);
 	pageData.value = res.data;
 	const d = JSON.parse(JSON.parse(res.data.data));
+  const value = res.data;
+  console.log('value',value)
 	page.setPageData(d);
 	// console.log(typeof d);
 	// console.log(d['comps']);

@@ -22,14 +22,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue';
+import {nextTick, onMounted, reactive, ref, watch} from 'vue';
 import useDevToolStore from '@/views/dev-tool/devToolStore';
-import { MsgOption } from '@/enum/msgOption';
-import { deepCloneByJson } from '@/utils/deepClone';
-import { MessageError } from '@/utils/message';
-import { cloneFnJSON } from '@vueuse/core';
-import { getCurrentUrl, isCompUrl, parseQuery } from '@/utils/url';
-import { ElMessage } from 'element-plus';
+import {MsgOption} from '@/enum/msgOption';
+import {deepCloneByJson} from '@/utils/deepClone';
+import {MessageError} from '@/utils/message';
+import {cloneFnJSON} from '@vueuse/core';
+import {getCurrentUrl, isCompUrl, parseQuery} from '@/utils/url';
+import {ElMessage} from 'element-plus';
+import microApp from '@micro-zoe/micro-app'
+
 
 const url = ref('');
 
@@ -46,6 +48,9 @@ const confirmUrlHandle = () => {
 	if (isCompUrl(url.value)) {
 		devStore.resetStore();
 		devStore.setUrl(url.value);
+    // 不带域名的地址，控制子应用my-app跳转/page1
+    microApp.router.push({name: 'dev-comp', path: devStore.url})
+    nextTick()
 	} else {
 		MessageError(`请输入'http://....' 或 'https://....格式的url'`);
 	}
@@ -143,7 +148,10 @@ onMounted(() => {
 	if (q.url) {
 		url.value = q.url;
 		devStore.setUrl(q.url);
-	}
+	  setTimeout(() => {
+      microApp.router.push({name: 'dev-comp', path: devStore.url})
+    },100)
+  }
 });
 </script>
 

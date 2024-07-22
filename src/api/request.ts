@@ -32,7 +32,7 @@ instance.interceptors.request.use(
 // 自定义响应拦截器
 instance.interceptors.response.use(
 	(response) => {
-		const token = response.headers?.Authorization; // 当请求头中返回token的时候进行token更新
+		const token = response.headers?.Authorization || response.headers?.['new-token']; // 当请求头中返回token的时候进行token更新
 		// console.log(response.headers);
 		if (token) {
 			// Set the token using the setToken function

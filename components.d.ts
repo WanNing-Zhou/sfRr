@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseContainer: typeof import('./src/components/ContainerComp/base-container.vue')['default']
     BaseDesktop: typeof import('./src/components/BaseDesktop/BaseDesktop.vue')['default']
     CirculComp: typeof import('./src/components/CirculComp/CirculComp.vue')['default']
     DragItem: typeof import('./src/components/dragdrop/DragItem.vue')['default']
@@ -43,6 +44,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElText: (typeof import('element-plus/es'))['ElText']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    GripContainer: typeof import('./src/components/ContainerComp/grip-container.vue')['default']
     GroundGlass: typeof import('./src/components/GroundGlass/GroundGlass.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MoveMask: typeof import('./src/components/dragdrop/MoveMask.vue')['default']
@@ -52,6 +54,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SideDrawer: typeof import('./src/components/Drawer/SideDrawer.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
+    WqDrag: typeof import('./src/components/WqDrag/WqDrag.vue')['default']
     WqTab: typeof import('./src/components/WqTab/WqTab.vue')['default']
     WqTitle: typeof import('./src/components/WqTitle/WqTitle.vue')['default']
     WqUpload: typeof import('./src/components/uploadComp/wqUpload.vue')['default']
