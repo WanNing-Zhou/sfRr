@@ -27,6 +27,8 @@
 		"vue": "^3.3.8",
 		"vue-grid-layout": "^2.4.0",
 		"vue-router": "^4.2.5",
+		"vue3-draggable-grid": "^0.0.6",
+		"vuedraggable": "^4.1.0",
 		"wujie-vue3": "^1.0.22"
 	},
 	"devDependencies": {

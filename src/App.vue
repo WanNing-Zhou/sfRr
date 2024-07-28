@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TDropPage from '@/views/test/dragdrop/t-drop-page.vue';
+</script>
 
 <template>
 	<!--  <div>-->
@@ -14,8 +16,8 @@
 	<!--	<test-index></test-index>-->
 	<!--	<HomePage />-->
 	<!--	<test-demo1 />-->
-
-	<router-view></router-view>
+	<t-drop-page />
+	<!--	<router-view></router-view>-->
 </template>
 
 <style scoped>

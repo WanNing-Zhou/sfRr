@@ -10,32 +10,31 @@
 			</ground-glass>
 		</div>
 		<micro-app
-        v-if="microName && showData.url"
+			v-if="microName && showData.url"
 			:class="{ eventNone: preView }"
 			style="width: 100%; height: 100%; overflow: hidden"
 			:data="childInfo.data"
 			:name="microName"
 			:url="showData.url"
 			iframe
-      router-mode="pure"
+			router-mode="pure"
 			@mounted="childMounted"
 			@datachange="handleDataChange"
-
 		></micro-app>
 	</div>
 </template>
 
 <script setup lang="ts">
-import {computed, nextTick, reactive, ref, watchEffect} from 'vue';
-import {CompApp} from '@/type/compApp';
+import { computed, nextTick, reactive, ref, watchEffect } from 'vue';
+import { CompApp } from '@/type/compApp';
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 import GroundGlass from '@/components/GroundGlass/GroundGlass.vue';
 import pageVisibleStore from '@/store/modules/pageVisible';
 import useCompEditStore from '@/store/modules/comp/compEdit';
-import {deepCloneByJson} from '@/utils/deepClone';
-import {MsgOption} from '@/enum/msgOption';
-import {cloneFnJSON} from '@vueuse/core';
-import microApp from '@micro-zoe/micro-app'
+import { deepCloneByJson } from '@/utils/deepClone';
+import { MsgOption } from '@/enum/msgOption';
+import { cloneFnJSON } from '@vueuse/core';
+import microApp from '@micro-zoe/micro-app';
 
 type Props = {
 	data: CompApp;
@@ -73,7 +72,6 @@ const showData = computed<CompApp | any>(() => {
 	}
 	return props.data;
 });
-
 
 // 遮罩可见性
 const maskVisible = ref(false);
@@ -194,7 +192,7 @@ const handleDataChange = (e: any) => {
  */
 
 const childMounted = () => {
-  // console.log('老子要尼玛发送数据');
+	// console.log('老子要尼玛发送数据');
 	// childInfo.data = { name: '卡卡西' };
 	// 判断组件config属性是否存在
 	if (showData.value.config) {
@@ -203,22 +201,21 @@ const childMounted = () => {
 		childInfo.data = { option: MsgOption.POST_CONFIG, data: [...showData.value.config] };
 	}
 
-setTimeout(() => {
-  if(showData.value?.url.includes('#')){
-    // console.log(microName.value)
-    // microApp.router.push({name: microName.value, path: showData.value.url})
-    microApp.router.replace({name: microName.value, path: showData.value.url})
-    // console.log('#url',showData.value.url)
-    setTimeout(() => {
-      if (showData.value.config) {
-        // 如果config蜀绣能够存在,将设置信息发送给子组件
-        // console.log('发送配置信息');
-        childInfo.data = { option: MsgOption.POST_CONFIG, data: [...showData.value.config] };
-      }
-    }, 50)
-  }
-}, 100)
-
+	setTimeout(() => {
+		if (showData.value?.url.includes('#')) {
+			// console.log(microName.value)
+			// microApp.router.push({name: microName.value, path: showData.value.url})
+			microApp.router.replace({ name: microName.value, path: showData.value.url });
+			// console.log('#url',showData.value.url)
+			setTimeout(() => {
+				if (showData.value.config) {
+					// 如果config蜀绣能够存在,将设置信息发送给子组件
+					// console.log('发送配置信息');
+					childInfo.data = { option: MsgOption.POST_CONFIG, data: [...showData.value.config] };
+				}
+			}, 50);
+		}
+	}, 100);
 };
 
 // const url = 'http://127.0.0.1:8000/index.html';

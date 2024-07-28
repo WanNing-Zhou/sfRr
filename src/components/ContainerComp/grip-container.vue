@@ -1,7 +1,45 @@
 <template>
 	<div ref="gripContainerRef" class="wq-grip-container">
 		<el-scrollbar>
-			<div class="wq-grip-container__content"></div>
+			<div
+				class="wq-grip-container__content"
+				@dragenter="onDragenter($event)"
+				@dragover="onDragover($event)"
+				@dragleave="onDragleave($event)"
+				@drop="onDrop($event)"
+			>
+				<template v-for="x in rowCount">
+					<div v-for="y in columnCount" :key="`${x}-${y}`" class="bg-column"></div>
+				</template>
+			</div>
+			<div class="drop-content__preview">
+				<PreviewItem
+					v-for="item in list"
+					:key="item.id"
+					:data="item"
+					:group-name="groupName"
+					:style="{
+						pointerEvents: current.show && item.id !== current.id ? 'none' : 'all',
+					}"
+					@close="onRemovePreviewItem(item)"
+					@resize-start="onResizeStart"
+					@resizeing="onResizeing"
+					@resize-end="onResizeEnd"
+				>
+					<slot name="preview-item" :data="item" :moving="current.show && item.id !== current.id"></slot>
+				</PreviewItem>
+				<MoveMask
+					v-if="mask"
+					v-show="current.show"
+					v-bind="current"
+					:width="boxSize.width"
+					:height="boxSize.height"
+					:gap="gap"
+					:is-put-down="isPutDown"
+				>
+					<slot name="move-mask" v-bind="current" :is-put-down="isPutDown"></slot>
+				</MoveMask>
+			</div>
 		</el-scrollbar>
 	</div>
 </template>
@@ -11,6 +49,9 @@ import { DragItemData, DragItemPosition } from '@/type/dragdrop';
 import { computed, reactive, ref } from 'vue';
 import _ from 'lodash';
 import { booleanIntersects, booleanWithin, dragStore, useBoxGrid, useBoxSize } from '@/components/dragdrop/drag';
+import { getUUName } from '@/utils/nanoid';
+import PreviewItem from '@/components/dragdrop/PreviewItem.vue';
+import MoveMask from '@/components/dragdrop/MoveMask.vue';
 
 type CallbackFun = (el: DragItemData | any, list: DragItemData[]) => Promise<boolean> | boolean;
 type Prop = {
@@ -120,7 +161,7 @@ const onDragleave = (e: any) => {
 };
 
 // 放置在目标上
-const onDrop = async (e: any) => {
+const onDrop = async (e: Event) => {
 	e.preventDefault();
 	current.show = false;
 	// console.log('onDrop 中 groupName', props.groupName);
@@ -137,7 +178,7 @@ const onDrop = async (e: any) => {
 			list.value
 		))
 	) {
-		if (dragData.id) {
+		if (dragData && dragData.id) {
 			dragData.x = current.x;
 			dragData.y = current.y;
 		} else {
@@ -184,6 +225,7 @@ const onResizeEnd = async () => {
 	current.show = false;
 	const dragData = dragStore.get(props.groupName);
 	if (
+		dragData &&
 		isPutDown.value &&
 		(await props.beforeDrop(
 			{
